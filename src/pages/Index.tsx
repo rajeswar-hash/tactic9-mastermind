@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useRef } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import NavBar from '@/components/NavBar';
 import GameBoard from '@/components/GameBoard';
 import StatsCard from '@/components/StatsCard';
@@ -26,10 +26,6 @@ export default function Index() {
 
   const gameRef = useRef(game);
   gameRef.current = game;
-
-  const currentStats = mode === 'friend' ? friendStats : botStats;
-  const setCurrentStats = mode === 'friend' ? setFriendStats : setBotStats;
-  const statsKey = mode === 'friend' ? 'tactic9_friend' : 'tactic9_bot';
 
   const updateStats = useCallback((winner: string | null) => {
     const key = mode === 'friend' ? 'tactic9_friend' : 'tactic9_bot';
@@ -63,7 +59,7 @@ export default function Index() {
     const result = checkWinner(newBoard);
     if (result) {
       if (soundOn) playWinSound();
-      const newState: GameState = {
+      setGame({
         board: newBoard,
         currentPlayer: game.currentPlayer,
         gameOver: true,
@@ -72,8 +68,7 @@ export default function Index() {
         moveCount: game.moveCount + 1,
         lastMove: index,
         history,
-      };
-      setGame(newState);
+      });
       updateStats(result.winner);
       setTimeout(() => setShowModal(true), 600);
       return;
@@ -170,13 +165,12 @@ export default function Index() {
           });
         }
         setThinking(false);
-      }, difficulty === 'impossible' ? 400 : difficulty === 'hard' ? 300 : 150);
+      }, difficulty === 'hard' ? 300 : 150);
     }
   }, [game, mode, difficulty, soundOn, thinking, updateStats]);
 
   const handleUndo = () => {
     if (game.history.length === 0 || game.gameOver) return;
-    // In bot mode, undo both AI and player move
     const steps = mode === 'bot' && game.history.length >= 2 ? 2 : 1;
     const target = game.history[game.history.length - steps];
     if (soundOn) playUndoSound();
@@ -208,14 +202,14 @@ export default function Index() {
   if (page === 'howto') return (
     <div className="min-h-screen">
       <NavBar currentPage={page} onNavigate={setPage} />
-      <div className="max-w-[1400px] mx-auto p-4 mt-8"><HowToPlay /></div>
+      <div className="max-w-[1400px] mx-auto px-3 sm:px-4 mt-6 sm:mt-8"><HowToPlay /></div>
     </div>
   );
 
   if (page === 'contact') return (
     <div className="min-h-screen">
       <NavBar currentPage={page} onNavigate={setPage} />
-      <div className="max-w-[1400px] mx-auto p-4 mt-8"><ContactPage /></div>
+      <div className="max-w-[1400px] mx-auto px-3 sm:px-4 mt-6 sm:mt-8"><ContactPage /></div>
     </div>
   );
 
@@ -224,52 +218,52 @@ export default function Index() {
       <NavBar currentPage={page} onNavigate={setPage} />
 
       {/* Hero */}
-      <header className="text-center pt-10 pb-4 px-4">
-        <div className="inline-block bg-gradient-to-r from-accent to-primary text-primary-foreground px-4 py-1.5 rounded-full text-sm font-semibold mb-4 animate-[float_3s_ease-in-out_infinite]">
+      <header className="text-center pt-8 sm:pt-10 pb-3 sm:pb-4 px-4">
+        <div className="inline-block bg-gradient-to-r from-accent to-primary text-primary-foreground px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold mb-3 sm:mb-4 animate-[float_3s_ease-in-out_infinite]">
           🚀 Advanced Strategy Game
         </div>
-        <h1 className="text-5xl md:text-6xl font-black bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent tracking-tighter mb-3">
+        <h1 className="text-3xl sm:text-5xl md:text-6xl font-black bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent tracking-tighter mb-2 sm:mb-3">
           Tactic9
         </h1>
-        <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-          9×9 grid, 5 in a row to win. Can you beat the IMPOSSIBLE challenge?
+        <p className="text-sm sm:text-lg text-muted-foreground max-w-xl mx-auto">
+          9×9 grid, 5 in a row to win. Challenge yourself against the smartest AI opponent!
         </p>
       </header>
 
       {/* Main */}
-      <div className="max-w-[1400px] mx-auto px-4 pb-8 grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-6">
+      <div className="max-w-[1400px] mx-auto px-3 sm:px-4 pb-8 grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-4 sm:gap-6">
         {/* Game */}
-        <div className="bg-card rounded-3xl p-6 border border-border shadow-[0_0_40px_hsl(var(--primary)/0.15)]">
+        <div className="bg-card rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-border shadow-[0_0_40px_hsl(var(--primary)/0.15)]">
           {/* Header */}
-          <div className="flex justify-between items-center flex-wrap gap-3 mb-4">
-            <h2 className="text-xl font-bold bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">
+          <div className="flex justify-between items-center flex-wrap gap-2 sm:gap-3 mb-4">
+            <h2 className="text-lg sm:text-xl font-bold bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">
               🎮 Game Arena
             </h2>
-            <div className="flex gap-2 flex-wrap">
+            <div className="flex gap-1.5 sm:gap-2 flex-wrap">
               <button
                 onClick={() => setSoundOn(!soundOn)}
-                className={`px-3 py-2 rounded-xl text-sm font-semibold transition-all ${soundOn ? 'bg-success text-primary-foreground' : 'bg-card-light text-muted-foreground'}`}
+                className={`px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${soundOn ? 'bg-success text-primary-foreground' : 'bg-card-light text-muted-foreground'}`}
               >
-                {soundOn ? '🔊' : '🔇'} Sound
+                {soundOn ? '🔊' : '🔇'}
               </button>
               <button
                 onClick={handleUndo}
                 disabled={game.history.length === 0 || game.gameOver || thinking}
-                className="px-3 py-2 rounded-xl text-sm font-semibold bg-warning text-background disabled:opacity-50 disabled:cursor-not-allowed hover:-translate-y-0.5 transition-transform"
+                className="px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-semibold bg-warning text-background disabled:opacity-50 disabled:cursor-not-allowed hover:-translate-y-0.5 transition-transform"
               >
                 ↩ Undo
               </button>
               <button
                 onClick={newGame}
-                className="px-3 py-2 rounded-xl text-sm font-semibold bg-gradient-to-r from-primary to-secondary text-primary-foreground shadow-lg shadow-primary/30 hover:-translate-y-0.5 transition-transform"
+                className="px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-semibold bg-gradient-to-r from-primary to-secondary text-primary-foreground shadow-lg shadow-primary/30 hover:-translate-y-0.5 transition-transform"
               >
-                🔄 New Game
+                🔄 New
               </button>
             </div>
           </div>
 
           {/* Mode Selection */}
-          <div className="flex gap-3 mb-4 flex-wrap">
+          <div className="flex gap-2 sm:gap-3 mb-4">
             <ModeButton
               active={mode === 'friend'}
               icon="👥"
@@ -289,27 +283,20 @@ export default function Index() {
           {/* Difficulty */}
           {mode === 'bot' && (
             <div className="flex gap-2 mb-4 flex-wrap">
-              {(['easy', 'medium', 'hard', 'impossible'] as Difficulty[]).map(d => (
+              {(['easy', 'medium', 'hard'] as Difficulty[]).map(d => (
                 <button
                   key={d}
                   onClick={() => { setDifficulty(d); newGame(); }}
-                  className={`px-4 py-2 rounded-xl text-sm font-semibold border-2 transition-all
+                  className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-semibold border-2 transition-all
                     ${difficulty === d
                       ? 'bg-primary border-primary text-primary-foreground'
                       : 'bg-card border-border text-muted-foreground hover:border-primary'
                     }
                   `}
                 >
-                  {d === 'impossible' ? '⚠️ IMPOSSIBLE' : d.charAt(0).toUpperCase() + d.slice(1)}
+                  {d.charAt(0).toUpperCase() + d.slice(1)}
                 </button>
               ))}
-            </div>
-          )}
-
-          {difficulty === 'impossible' && mode === 'bot' && (
-            <div className="bg-destructive/20 border-2 border-destructive rounded-xl p-3 mb-4 animate-[shake_0.5s_ease]">
-              <h4 className="text-destructive font-bold text-sm flex items-center gap-1">⚠️ IMPOSSIBLE Mode Active</h4>
-              <p className="text-destructive/80 text-xs mt-1">Optimized minimax with pattern recognition. Extremely challenging!</p>
             </div>
           )}
 
@@ -325,7 +312,7 @@ export default function Index() {
                   />
                 ))}
               </div>
-              <span className="text-muted-foreground text-sm">Computer is calculating...</span>
+              <span className="text-muted-foreground text-xs sm:text-sm">Computer is thinking...</span>
             </div>
           )}
 
@@ -338,10 +325,10 @@ export default function Index() {
           />
 
           {/* Game Info */}
-          <div className="flex justify-between items-center p-4 bg-background rounded-2xl border border-border mt-4">
-            <div className="flex items-center gap-3">
-              <span className="text-sm text-muted-foreground">Current Turn:</span>
-              <div className={`w-9 h-9 rounded-lg flex items-center justify-center font-extrabold text-primary-foreground
+          <div className="flex justify-between items-center p-3 sm:p-4 bg-background rounded-xl sm:rounded-2xl border border-border mt-4">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <span className="text-xs sm:text-sm text-muted-foreground">Turn:</span>
+              <div className={`w-8 h-8 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center font-extrabold text-sm sm:text-base text-primary-foreground
                 ${game.currentPlayer === 'X'
                   ? 'bg-gradient-to-br from-accent to-primary'
                   : 'bg-gradient-to-br from-secondary to-warning'
@@ -350,12 +337,12 @@ export default function Index() {
                 {game.currentPlayer}
               </div>
             </div>
-            <span className="text-sm text-muted-foreground">Moves: {game.moveCount}</span>
+            <span className="text-xs sm:text-sm text-muted-foreground">Moves: {game.moveCount}</span>
           </div>
 
           {/* Status bar */}
           {game.gameOver && (
-            <div className={`text-center p-3 mt-4 rounded-xl font-bold text-lg animate-[fadeIn_0.4s_ease]
+            <div className={`text-center p-3 mt-4 rounded-xl font-bold text-base sm:text-lg animate-[fadeIn_0.4s_ease]
               ${game.winner
                 ? 'bg-success/15 text-success border-2 border-success'
                 : 'bg-warning/15 text-warning border-2 border-warning'
@@ -368,33 +355,34 @@ export default function Index() {
 
         {/* Sidebar */}
         <div className="flex flex-col gap-4">
-          <StatsCard
-            title="vs Friend"
-            icon="👥"
-            stats={friendStats}
-            onReset={() => resetStats('tactic9_friend')}
-            compact
-          />
-          <StatsCard
-            title="vs Computer"
-            icon="🤖"
-            stats={botStats}
-            onReset={() => resetStats('tactic9_bot')}
-            compact
-          />
+          <StatsCard title="vs Friend" icon="👥" stats={friendStats} onReset={() => resetStats('tactic9_friend')} compact />
+          <StatsCard title="vs Computer" icon="🤖" stats={botStats} onReset={() => resetStats('tactic9_bot')} compact />
 
-          {/* Quick Rules */}
+          {/* How to Play - Quick Guide */}
           <div className="bg-card rounded-2xl p-4 border border-border">
             <h3 className="text-sm font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-3">
-              🎯 Quick Rules
+              📖 How to Play
             </h3>
             <ul className="space-y-2">
-              {['9×9 grid board', 'Connect 5 to win', 'Rows, columns, diagonals', 'X always goes first', 'Undo available'].map(r => (
-                <li key={r} className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <span className="text-success font-bold">✓</span> {r}
+              {[
+                'Place X or O on the 9×9 grid',
+                'Connect 5 in a row to win',
+                'Horizontal, vertical, or diagonal',
+                'X always goes first',
+                'Use Undo to take back moves',
+                'Block your opponent\'s lines!',
+              ].map(r => (
+                <li key={r} className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground">
+                  <span className="text-success font-bold text-xs">✓</span> {r}
                 </li>
               ))}
             </ul>
+            <button
+              onClick={() => setPage('howto')}
+              className="mt-3 text-xs font-semibold text-primary hover:underline"
+            >
+              Read full guide →
+            </button>
           </div>
         </div>
       </div>
@@ -417,16 +405,16 @@ function ModeButton({ active, icon, label, sub, onClick }: {
   return (
     <button
       onClick={onClick}
-      className={`flex-1 min-w-[150px] p-4 rounded-2xl border-2 font-semibold transition-all flex flex-col items-center gap-1
+      className={`flex-1 min-w-[120px] p-3 sm:p-4 rounded-2xl border-2 font-semibold transition-all flex flex-col items-center gap-1
         ${active
           ? 'bg-gradient-to-r from-primary to-secondary border-transparent text-primary-foreground shadow-[0_0_40px_hsl(var(--primary)/0.3)]'
           : 'bg-card border-border text-muted-foreground hover:border-primary hover:-translate-y-1'
         }
       `}
     >
-      <span className="text-2xl">{icon}</span>
-      <span>{label}</span>
-      <span className="text-xs opacity-70">{sub}</span>
+      <span className="text-xl sm:text-2xl">{icon}</span>
+      <span className="text-sm">{label}</span>
+      <span className="text-[10px] sm:text-xs opacity-70">{sub}</span>
     </button>
   );
 }

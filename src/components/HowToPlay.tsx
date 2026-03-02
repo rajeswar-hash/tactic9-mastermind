@@ -1,7 +1,7 @@
 export default function HowToPlay() {
   return (
-    <div className="max-w-4xl mx-auto p-8 bg-card rounded-3xl border border-border animate-[fadeIn_0.4s_ease]">
-      <h2 className="text-3xl font-extrabold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-6">
+    <div className="max-w-4xl mx-auto p-5 sm:p-8 bg-card rounded-3xl border border-border animate-[fadeIn_0.4s_ease]">
+      <h2 className="text-2xl sm:text-3xl font-extrabold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-6">
         📖 How to Play Tactic9
       </h2>
 
@@ -21,10 +21,9 @@ export default function HowToPlay() {
 
       <Section title="🤖 Difficulty Levels">
         <ul className="space-y-2">
-          <li><strong>Easy:</strong> Random moves with basic blocking.</li>
-          <li><strong>Medium:</strong> Blocks threats and takes wins.</li>
-          <li><strong>Hard:</strong> Minimax search, 3 moves deep.</li>
-          <li><strong>Impossible:</strong> Deep minimax with pattern recognition.</li>
+          <li><strong>Easy:</strong> Random moves with basic blocking. Great for beginners.</li>
+          <li><strong>Medium:</strong> Blocks threats and takes winning moves. Good for casual play.</li>
+          <li><strong>Hard:</strong> Advanced minimax search with pattern recognition. A real challenge!</li>
         </ul>
       </Section>
 
@@ -44,8 +43,8 @@ export default function HowToPlay() {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="mb-6">
-      <h3 className="text-xl font-bold text-foreground mb-3">{title}</h3>
-      <div className="text-muted-foreground leading-relaxed">{children}</div>
+      <h3 className="text-lg sm:text-xl font-bold text-foreground mb-3">{title}</h3>
+      <div className="text-sm sm:text-base text-muted-foreground leading-relaxed">{children}</div>
     </div>
   );
 }

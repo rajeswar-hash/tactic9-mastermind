@@ -1,7 +1,7 @@
 // Game AI for Tactic9
 
 type Board = (string | null)[];
-type Difficulty = 'easy' | 'medium' | 'hard' | 'impossible';
+type Difficulty = 'easy' | 'medium' | 'hard';
 
 const SIZE = 9;
 const WIN_LENGTH = 5;
@@ -195,8 +195,8 @@ export function getAIMove(board: Board, difficulty: Difficulty): number {
     return bestMove;
   }
 
-  // Hard and Impossible use minimax
-  const depth = difficulty === 'hard' ? 3 : 4;
+  // Hard uses minimax
+  const depth = 3;
   const moves = getRelevantMoves(board);
   
   // Sort moves by heuristic for better pruning
@@ -205,7 +205,7 @@ export function getAIMove(board: Board, difficulty: Difficulty): number {
     const score = evaluate(board, aiPlayer);
     board[move] = null;
     return { move, score };
-  }).sort((a, b) => b.score - a.score).slice(0, difficulty === 'impossible' ? 15 : 12);
+  }).sort((a, b) => b.score - a.score).slice(0, 12);
 
   let bestMove = scoredMoves[0].move;
   let bestScore = -Infinity;
