@@ -1,6 +1,6 @@
 export type CellValue = 'X' | 'O' | null;
 export type GameMode = 'friend' | 'bot';
-export type Difficulty = 'easy' | 'medium' | 'hard' | 'impossible';
+export type Difficulty = 'easy' | 'medium' | 'hard';
 
 export interface GameStats {
   totalGames: number;
