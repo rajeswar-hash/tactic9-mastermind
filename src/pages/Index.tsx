@@ -7,6 +7,8 @@ import HowToPlay from '@/components/HowToPlay';
 import ContactPage from '@/components/ContactPage';
 import PrivacyPolicy from '@/components/PrivacyPolicy';
 import HelpPage from '@/components/HelpPage';
+import TermsOfService from '@/components/TermsOfService';
+import AboutPage from '@/components/AboutPage';
 import {
   GameMode, Difficulty, GameState, GameStats,
   createInitialState, loadStats, saveStats,
@@ -226,6 +228,20 @@ export default function Index() {
     <div className="min-h-screen">
       <NavBar currentPage={page} onNavigate={setPage} />
       <div className="max-w-[1400px] mx-auto px-3 sm:px-4 mt-6 sm:mt-8"><HelpPage /></div>
+    </div>
+  );
+
+  if (page === 'terms') return (
+    <div className="min-h-screen">
+      <NavBar currentPage={page} onNavigate={setPage} />
+      <div className="max-w-[1400px] mx-auto px-3 sm:px-4 mt-6 sm:mt-8"><TermsOfService /></div>
+    </div>
+  );
+
+  if (page === 'about') return (
+    <div className="min-h-screen">
+      <NavBar currentPage={page} onNavigate={setPage} />
+      <div className="max-w-[1400px] mx-auto px-3 sm:px-4 mt-6 sm:mt-8"><AboutPage /></div>
     </div>
   );
 
