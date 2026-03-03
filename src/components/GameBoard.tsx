@@ -10,9 +10,9 @@ interface GameBoardProps {
 
 export default function GameBoard({ board, winningCells, lastMove, gameOver, onCellClick }: GameBoardProps) {
   return (
-    <div className="flex justify-center my-4 sm:my-6 overflow-x-auto p-2 sm:p-4 bg-background rounded-2xl border border-border">
+    <div className="flex justify-center my-3 sm:my-6 p-1.5 sm:p-4 bg-background rounded-xl sm:rounded-2xl border border-border">
       <div
-        className="grid gap-[4px] sm:gap-[6px] p-2 sm:p-3 rounded-2xl bg-card-light"
+        className="grid gap-[2px] sm:gap-[4px] md:gap-[6px] p-1.5 sm:p-2 md:p-3 rounded-xl sm:rounded-2xl bg-card-light w-full max-w-[500px]"
         style={{ gridTemplateColumns: 'repeat(9, 1fr)' }}
       >
         {board.map((cell, i) => {
@@ -26,9 +26,9 @@ export default function GameBoard({ board, winningCells, lastMove, gameOver, onC
               onClick={() => onCellClick(i)}
               disabled={taken || gameOver}
               className={`
-                w-[36px] h-[36px] sm:w-[44px] sm:h-[44px] md:w-[55px] md:h-[55px]
-                rounded-[8px] sm:rounded-[10px] flex items-center justify-center
-                text-lg sm:text-xl md:text-2xl font-extrabold border-2 transition-all duration-200
+                aspect-square w-full max-w-[55px]
+                rounded-md sm:rounded-lg flex items-center justify-center
+                text-sm sm:text-lg md:text-2xl font-extrabold border-2 transition-all duration-200
                 select-none relative overflow-hidden
                 ${!taken && !gameOver ? 'cursor-pointer hover:bg-card-light hover:border-primary hover:scale-105 active:scale-95' : ''}
                 ${taken ? 'cursor-not-allowed' : ''}
