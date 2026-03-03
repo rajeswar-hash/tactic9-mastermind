@@ -5,6 +5,8 @@ import StatsCard from '@/components/StatsCard';
 import WinModal from '@/components/WinModal';
 import HowToPlay from '@/components/HowToPlay';
 import ContactPage from '@/components/ContactPage';
+import PrivacyPolicy from '@/components/PrivacyPolicy';
+import HelpPage from '@/components/HelpPage';
 import {
   GameMode, Difficulty, GameState, GameStats,
   createInitialState, loadStats, saveStats,
@@ -210,6 +212,20 @@ export default function Index() {
     <div className="min-h-screen">
       <NavBar currentPage={page} onNavigate={setPage} />
       <div className="max-w-[1400px] mx-auto px-3 sm:px-4 mt-6 sm:mt-8"><ContactPage /></div>
+    </div>
+  );
+
+  if (page === 'privacy') return (
+    <div className="min-h-screen">
+      <NavBar currentPage={page} onNavigate={setPage} />
+      <div className="max-w-[1400px] mx-auto px-3 sm:px-4 mt-6 sm:mt-8"><PrivacyPolicy /></div>
+    </div>
+  );
+
+  if (page === 'help') return (
+    <div className="min-h-screen">
+      <NavBar currentPage={page} onNavigate={setPage} />
+      <div className="max-w-[1400px] mx-auto px-3 sm:px-4 mt-6 sm:mt-8"><HelpPage /></div>
     </div>
   );
 
