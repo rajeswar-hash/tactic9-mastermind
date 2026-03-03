@@ -7,10 +7,12 @@ interface NavBarProps {
 
 const pages = [
   { id: 'home', label: 'Home' },
+  { id: 'about', label: 'About' },
   { id: 'howto', label: 'How to Play' },
   { id: 'help', label: 'Help' },
   { id: 'contact', label: 'Contact Us' },
-  { id: 'privacy', label: 'Privacy Policy' },
+  { id: 'terms', label: 'Terms' },
+  { id: 'privacy', label: 'Privacy' },
 ];
 
 export default function NavBar({ currentPage, onNavigate }: NavBarProps) {

@@ -30,19 +30,19 @@ export function playMoveSound(isX: boolean) {
 export function playWinSound() {
   try {
     const c = getCtx();
-    const notes = [523, 659, 784, 1047]; // C5, E5, G5, C6
+    const notes = [523, 587, 659, 784, 880, 1047]; // C5, D5, E5, G5, A5, C6
     notes.forEach((freq, i) => {
       const osc = c.createOscillator();
       const gain = c.createGain();
       osc.connect(gain);
       gain.connect(c.destination);
-      osc.type = 'sine';
+      osc.type = i < 4 ? 'sine' : 'triangle';
       osc.frequency.value = freq;
-      const startTime = c.currentTime + i * 0.15;
-      gain.gain.setValueAtTime(0.2, startTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.4);
+      const startTime = c.currentTime + i * 0.25;
+      gain.gain.setValueAtTime(0.18, startTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.6);
       osc.start(startTime);
-      osc.stop(startTime + 0.4);
+      osc.stop(startTime + 0.6);
     });
   } catch {}
 }
