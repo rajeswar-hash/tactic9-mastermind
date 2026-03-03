@@ -12,7 +12,7 @@ const pages = [
   { id: 'help', label: 'Help' },
   { id: 'contact', label: 'Contact Us' },
   { id: 'terms', label: 'Terms' },
-  { id: 'privacy', label: 'Privacy' },
+  { id: 'privacy', label: 'Privacy Policy' },
 ];
 
 export default function NavBar({ currentPage, onNavigate }: NavBarProps) {
