@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting…</title>
+  </head>
+  <body>
+    <script>
+      (function () {
+        const { origin, hostname, pathname } = window.location;
+        const segments = pathname.split("/").filter(Boolean);
+        const isGithubPagesProject = hostname.endsWith("github.io") && segments.length > 0;
+        const basePath = isGithubPagesProject ? `/${segments[0]}/` : "/";
+        window.location.replace(`${origin}${basePath}`);
+      })();
+    </script>
+  </body>
+</html>
