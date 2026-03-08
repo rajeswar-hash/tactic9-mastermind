@@ -228,51 +228,61 @@ export default function Index({ initialPage = 'home' }: IndexProps) {
     else setBotStats(empty);
   };
 
+  useEffect(() => {
+    setPage(safeInitialPage);
+  }, [safeInitialPage]);
+
+  const handleNavigate = useCallback((nextPage: string) => {
+    const targetPage = (validPages.has(nextPage as IndexPage) ? nextPage : 'home') as IndexPage;
+    setPage(targetPage);
+    navigate(pageToPath[targetPage]);
+  }, [navigate]);
+
   if (page === 'howto') return (
     <div className="min-h-screen">
-      <NavBar currentPage={page} onNavigate={setPage} />
+      <NavBar currentPage={page} onNavigate={handleNavigate} />
       <div className="max-w-[1400px] mx-auto px-3 sm:px-4 mt-6 sm:mt-8"><HowToPlay /></div>
     </div>
   );
 
   if (page === 'contact') return (
     <div className="min-h-screen">
-      <NavBar currentPage={page} onNavigate={setPage} />
+      <NavBar currentPage={page} onNavigate={handleNavigate} />
       <div className="max-w-[1400px] mx-auto px-3 sm:px-4 mt-6 sm:mt-8"><ContactPage /></div>
     </div>
   );
 
   if (page === 'privacy') return (
     <div className="min-h-screen">
-      <NavBar currentPage={page} onNavigate={setPage} />
+      <NavBar currentPage={page} onNavigate={handleNavigate} />
       <div className="max-w-[1400px] mx-auto px-3 sm:px-4 mt-6 sm:mt-8"><PrivacyPolicy /></div>
     </div>
   );
 
   if (page === 'help') return (
     <div className="min-h-screen">
-      <NavBar currentPage={page} onNavigate={setPage} />
+      <NavBar currentPage={page} onNavigate={handleNavigate} />
       <div className="max-w-[1400px] mx-auto px-3 sm:px-4 mt-6 sm:mt-8"><HelpPage /></div>
     </div>
   );
 
   if (page === 'terms') return (
     <div className="min-h-screen">
-      <NavBar currentPage={page} onNavigate={setPage} />
+      <NavBar currentPage={page} onNavigate={handleNavigate} />
       <div className="max-w-[1400px] mx-auto px-3 sm:px-4 mt-6 sm:mt-8"><TermsOfService /></div>
     </div>
   );
 
   if (page === 'about') return (
     <div className="min-h-screen">
-      <NavBar currentPage={page} onNavigate={setPage} />
+      <NavBar currentPage={page} onNavigate={handleNavigate} />
       <div className="max-w-[1400px] mx-auto px-3 sm:px-4 mt-6 sm:mt-8"><AboutPage /></div>
     </div>
   );
 
   if (page === 'strategy') return (
     <div className="min-h-screen">
-      <NavBar currentPage={page} onNavigate={setPage} />
+      <NavBar currentPage={page} onNavigate={handleNavigate} />
       <div className="max-w-[1400px] mx-auto px-3 sm:px-4 mt-6 sm:mt-8"><StrategyGuide /></div>
     </div>
   );
@@ -280,7 +290,7 @@ export default function Index({ initialPage = 'home' }: IndexProps) {
 
   return (
     <div className="min-h-screen">
-      <NavBar currentPage={page} onNavigate={setPage} />
+      <NavBar currentPage={page} onNavigate={handleNavigate} />
 
       {/* Hero */}
       <header className="text-center pt-8 sm:pt-10 pb-3 sm:pb-4 px-4">
@@ -441,7 +451,7 @@ export default function Index({ initialPage = 'home' }: IndexProps) {
               ))}
             </ul>
             <button
-              onClick={() => setPage('howto')}
+              onClick={() => handleNavigate('howto')}
               className="mt-3 text-xs font-semibold text-primary hover:underline"
             >
               Read full guide →
