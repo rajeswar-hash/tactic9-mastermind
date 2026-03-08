@@ -332,6 +332,13 @@ export default function Index({ initialPage = 'home' }: IndexProps) {
                 ⛶
               </button>
               <button
+                onClick={() => setMusicOn(!musicOn)}
+                className={`px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${musicOn ? 'bg-primary text-primary-foreground' : 'bg-card-light text-muted-foreground'}`}
+                title="Background Music"
+              >
+                {musicOn ? '🎵' : '🎵'}
+              </button>
+              <button
                 onClick={() => setSoundOn(!soundOn)}
                 className={`px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${soundOn ? 'bg-success text-primary-foreground' : 'bg-card-light text-muted-foreground'}`}
               >
