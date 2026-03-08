@@ -29,7 +29,7 @@ export default function TermsOfService() {
       </Section>
 
       <Section title="4. User Conduct">
-        <p>When using Tactic9, you agree to:</p>
+        <p>When using Tactic9-Mastermind, you agree to:</p>
         <ul className="list-disc pl-5 space-y-1 mt-2">
           <li>Use the Service only for lawful purposes and in compliance with all applicable laws</li>
           <li>Not attempt to exploit, hack, reverse-engineer, or disrupt the Service</li>
@@ -46,7 +46,7 @@ export default function TermsOfService() {
         <p>All content, design, code, graphics, branding, logos, sound effects, animations, text, and other materials associated with Tactic9-Mastermind are the intellectual property of Tactic9-Mastermind Games and are protected by applicable copyright, trademark, and intellectual property laws.</p>
         <p className="mt-2">You may not reproduce, distribute, modify, create derivative works of, publicly display, publicly perform, republish, download, store, or transmit any of the material on our Service without prior written permission, except as follows:</p>
         <ul className="list-disc pl-5 space-y-1 mt-2">
-          <li>You may share links to Tactic9 on social media or personal websites</li>
+          <li>You may share links to Tactic9-Mastermind on social media or personal websites</li>
           <li>Your browser may temporarily cache copies of materials for display purposes</li>
           <li>You may print or download one copy of pages for personal, non-commercial use</li>
         </ul>
