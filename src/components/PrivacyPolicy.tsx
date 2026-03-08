@@ -45,11 +45,16 @@ export default function PrivacyPolicy() {
       </Section>
 
       <Section title="6. Third-Party Services">
-        <p>We use Google Fonts to load the Outfit typeface. Google may collect anonymized usage data as described in their <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Privacy Policy</a>. We do not use any other third-party analytics, advertising, or tracking services.</p>
+        <p>We use the following third-party services:</p>
+        <ul className="list-disc pl-5 space-y-1 mt-2">
+          <li><strong>Google Fonts</strong> — To load the Outfit typeface. Google may collect anonymized usage data as described in their <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Privacy Policy</a>.</li>
+          <li><strong>Resend</strong> — To deliver contact form submissions to our team via email. Resend processes the name, email, and message you submit. See their <a href="https://resend.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Privacy Policy</a>.</li>
+        </ul>
+        <p className="mt-2">We do not use any third-party analytics, advertising, or tracking services.</p>
       </Section>
 
       <Section title="7. Data Security">
-        <p>We take reasonable technical and organizational measures to protect any information you provide. Since game data is stored locally on your device, you maintain full control. Contact form submissions are handled securely and not shared with third parties.</p>
+        <p>We take reasonable technical and organizational measures to protect any information you provide. Since game data is stored locally on your device, you maintain full control. Contact form submissions are transmitted securely to our team via a backend email service (Resend) and are not shared with other third parties.</p>
       </Section>
 
       <Section title="8. Data Retention">

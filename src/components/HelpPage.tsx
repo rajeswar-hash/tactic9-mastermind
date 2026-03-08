@@ -64,7 +64,7 @@ const faqCategories = [
       },
       {
         q: 'Is my data collected or sent to any server?',
-        a: 'No. All game data is stored locally on your device. We do not collect, track, or transmit any gameplay data. The only information we receive is what you voluntarily submit through the Contact Us form.',
+        a: 'All game data (stats, preferences) is stored locally on your device and never sent to any server. The only information transmitted is what you voluntarily submit through the Contact Us form, which is sent to our team via email.',
       },
     ]
   },
