@@ -54,6 +54,12 @@ export default function ContactPage() {
 
       <SupportChat />
 
+      <div className="my-6 flex items-center gap-3">
+        <div className="flex-1 h-px bg-border" />
+        <span className="text-xs text-muted-foreground font-medium">or send us a message</span>
+        <div className="flex-1 h-px bg-border" />
+      </div>
+
       {sent ? (
         <div className="text-center py-12">
           <div className="text-5xl mb-4">✅</div>
