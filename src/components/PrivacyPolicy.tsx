@@ -7,11 +7,11 @@ export default function PrivacyPolicy() {
       <p className="text-xs text-muted-foreground mb-8">Last updated: March 3, 2026</p>
 
       <Section title="1. Introduction">
-        <p>Welcome to Tactic9-Mastermind. This Privacy Policy explains how we handle information when you use our browser-based strategy game. By using Tactic9-Mastermind, you agree to the practices described in this policy.</p>
+        <p>Welcome to Tactic9. This Privacy Policy explains how we handle information when you use our browser-based strategy game. By using Tactic9, you agree to the practices described in this policy.</p>
       </Section>
 
       <Section title="2. Information We Collect">
-        <p>Tactic9-Mastermind is a browser-based game. We do <strong>not</strong> collect personal data unless you voluntarily submit it through our Contact Us form. Information you may provide includes:</p>
+        <p>Tactic9 is a browser-based game. We do <strong>not</strong> collect personal data unless you voluntarily submit it through our Contact Us form. Information you may provide includes:</p>
         <ul className="list-disc pl-5 space-y-1 mt-2">
           <li>Name and email address (via Contact Us form)</li>
           <li>Subject and message content</li>
@@ -41,7 +41,7 @@ export default function PrivacyPolicy() {
       </Section>
 
       <Section title="5. Cookies">
-        <p>Tactic9-Mastermind does not use tracking cookies, advertising cookies, or analytics cookies. We may use essential cookies strictly required for basic site functionality. No third-party cookies are set.</p>
+        <p>Tactic9 does not use tracking cookies, advertising cookies, or analytics cookies. We may use essential cookies strictly required for basic site functionality. No third-party cookies are set.</p>
       </Section>
 
       <Section title="6. Third-Party Services">
@@ -62,7 +62,7 @@ export default function PrivacyPolicy() {
       </Section>
 
       <Section title="9. Children's Privacy">
-        <p>Tactic9-Mastermind is suitable for all ages and is designed to be family-friendly. We do not knowingly collect personal information from children under 13 (or under 16 in the EU/EEA). If you believe a child has provided us with personal information, please contact us immediately so we can delete it.</p>
+        <p>Tactic9 is suitable for all ages and is designed to be family-friendly. We do not knowingly collect personal information from children under 13 (or under 16 in the EU/EEA). If you believe a child has provided us with personal information, please contact us immediately so we can delete it.</p>
       </Section>
 
       <Section title="10. Your Rights">
@@ -78,11 +78,11 @@ export default function PrivacyPolicy() {
       </Section>
 
       <Section title="11. International Users">
-        <p>Tactic9-Mastermind is accessible worldwide. By using Tactic9-Mastermind, you understand that any voluntarily submitted data may be processed in accordance with this policy regardless of your location. We comply with applicable data protection laws including GDPR and CCPA where relevant.</p>
+        <p>Tactic9 is accessible worldwide. By using Tactic9, you understand that any voluntarily submitted data may be processed in accordance with this policy regardless of your location. We comply with applicable data protection laws including GDPR and CCPA where relevant.</p>
       </Section>
 
       <Section title="12. Changes to This Policy">
-        <p>We may update this Privacy Policy from time to time. Changes will be reflected on this page with an updated revision date. We encourage you to review this policy periodically. Continued use of Tactic9-Mastermind after changes constitutes acceptance of the updated policy.</p>
+        <p>We may update this Privacy Policy from time to time. Changes will be reflected on this page with an updated revision date. We encourage you to review this policy periodically. Continued use of Tactic9 after changes constitutes acceptance of the updated policy.</p>
       </Section>
 
       <Section title="13. Contact">

@@ -6,9 +6,9 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
-const SYSTEM_PROMPT = `You are the Tactic9-Mastermind Support Assistant — a friendly, concise helper for the Tactic9-Mastermind strategy game.
+const SYSTEM_PROMPT = `You are the Tactic9 Support Assistant — a friendly, concise helper for the Tactic9 strategy game.
 
-About Tactic9-Mastermind:
+About Tactic9:
 - A browser-based strategy game played on a 9×9 grid
 - Players connect 5 marks in a row (horizontal, vertical, or diagonal) to win
 - Two modes: vs Friend (local 2-player) and vs Computer (AI with Easy/Medium/Hard)

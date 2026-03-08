@@ -18,7 +18,7 @@ const faqCategories = [
       },
       {
         q: 'Do I need to create an account?',
-        a: 'No! Tactic9-Mastermind is completely free and requires no account, registration, or download. Just open the website and start playing immediately.',
+        a: 'No! Tactic9 is completely free and requires no account, registration, or download. Just open the website and start playing immediately.',
       },
     ]
   },
@@ -73,11 +73,11 @@ const faqCategories = [
     faqs: [
       {
         q: 'Does the game work on mobile?',
-        a: 'Yes! Tactic9-Mastermind is fully responsive and works on phones, tablets, laptops, and desktops. The 9×9 grid automatically scales to fit your screen size.',
+        a: 'Yes! Tactic9 is fully responsive and works on phones, tablets, laptops, and desktops. The 9×9 grid automatically scales to fit your screen size.',
       },
       {
         q: 'Which browsers are supported?',
-        a: 'Tactic9-Mastermind works on all modern browsers including Google Chrome, Mozilla Firefox, Apple Safari, Microsoft Edge, and Brave. We recommend using the latest version for the best experience.',
+        a: 'Tactic9 works on all modern browsers including Google Chrome, Mozilla Firefox, Apple Safari, Microsoft Edge, and Brave. We recommend using the latest version for the best experience.',
       },
       {
         q: 'The game seems stuck or unresponsive. What should I do?',
@@ -97,11 +97,11 @@ const faqCategories = [
     category: "General",
     faqs: [
       {
-        q: 'Is Tactic9-Mastermind free?',
-        a: 'Yes, Tactic9-Mastermind is completely free to play. There are no ads, no in-app purchases, and no premium features locked behind paywalls. Everyone gets the full experience.',
+        q: 'Is Tactic9 free?',
+        a: 'Yes, Tactic9 is completely free to play. There are no ads, no in-app purchases, and no premium features locked behind paywalls. Everyone gets the full experience.',
       },
       {
-        q: 'Can I share or embed Tactic9-Mastermind?',
+        q: 'Can I share or embed Tactic9?',
         a: 'You can share the URL with friends so they can play on their own devices. Currently, there is no embeddable widget, but you can link to the game from your website or social media.',
       },
       {
