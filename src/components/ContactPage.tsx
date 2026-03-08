@@ -4,14 +4,17 @@ const issueTypes = [
   'Bug Report',
   'Feature Request',
   'Gameplay Issue',
-  'Account Problem',
-  'Feedback & Suggestions',
+  'UI/Design Feedback',
+  'Performance Problem',
+  'Accessibility Concern',
+  'General Feedback',
+  'Partnership Inquiry',
   'Other',
 ];
 
 export default function ContactPage() {
   const [sent, setSent] = useState(false);
-  const [form, setForm] = useState({ name: '', email: '', issue: '', subject: '', message: '' });
+  const [form, setForm] = useState({ name: '', email: '', issue: '', subject: '', message: '', device: '', browser: '' });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,88 +36,135 @@ export default function ContactPage() {
         <div className="text-center py-12">
           <div className="text-5xl mb-4">✅</div>
           <h3 className="text-xl font-bold text-foreground mb-2">Message Sent!</h3>
-          <p className="text-muted-foreground mb-4">Thanks for reaching out. We'll get back to you as soon as possible.</p>
+          <p className="text-muted-foreground mb-2">Thanks for reaching out. We'll get back to you as soon as possible.</p>
+          <p className="text-xs text-muted-foreground mb-6">You should receive a confirmation email shortly. Please check your spam folder if you don't see it.</p>
           <button
-            onClick={() => { setSent(false); setForm({ name: '', email: '', issue: '', subject: '', message: '' }); }}
+            onClick={() => { setSent(false); setForm({ name: '', email: '', issue: '', subject: '', message: '', device: '', browser: '' }); }}
             className="px-5 py-2.5 rounded-xl font-semibold bg-gradient-to-r from-primary to-secondary text-primary-foreground hover:-translate-y-0.5 transition-transform"
           >
             Send Another Message
           </button>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <>
+          {/* Quick help cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
+            <QuickHelp emoji="🐛" title="Bug Report" description="Found something broken? Let us know with details." />
+            <QuickHelp emoji="💡" title="Feature Request" description="Have an idea to improve the game? We'd love to hear it!" />
+            <QuickHelp emoji="💬" title="General Feedback" description="Share your thoughts, suggestions, or just say hello." />
+          </div>
+
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block mb-1.5 font-semibold text-foreground text-sm">Your Name *</label>
+                <input
+                  type="text"
+                  required
+                  value={form.name}
+                  onChange={e => update('name', e.target.value)}
+                  placeholder="John Doe"
+                  className="w-full p-3 bg-background border-2 border-border rounded-xl text-foreground placeholder:text-muted-foreground/50 focus:border-primary focus:outline-none transition-colors text-sm"
+                />
+              </div>
+              <div>
+                <label className="block mb-1.5 font-semibold text-foreground text-sm">Email Address *</label>
+                <input
+                  type="email"
+                  required
+                  value={form.email}
+                  onChange={e => update('email', e.target.value)}
+                  placeholder="john@example.com"
+                  className="w-full p-3 bg-background border-2 border-border rounded-xl text-foreground placeholder:text-muted-foreground/50 focus:border-primary focus:outline-none transition-colors text-sm"
+                />
+              </div>
+            </div>
+
             <div>
-              <label className="block mb-1.5 font-semibold text-foreground text-sm">Your Name *</label>
+              <label className="block mb-1.5 font-semibold text-foreground text-sm">Issue Type *</label>
+              <select
+                required
+                value={form.issue}
+                onChange={e => update('issue', e.target.value)}
+                className="w-full p-3 bg-background border-2 border-border rounded-xl text-foreground focus:border-primary focus:outline-none transition-colors text-sm"
+              >
+                <option value="" disabled>Select an issue type...</option>
+                {issueTypes.map(t => (
+                  <option key={t} value={t}>{t}</option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label className="block mb-1.5 font-semibold text-foreground text-sm">Subject *</label>
               <input
                 type="text"
                 required
-                value={form.name}
-                onChange={e => update('name', e.target.value)}
-                placeholder="John Doe"
+                value={form.subject}
+                onChange={e => update('subject', e.target.value)}
+                placeholder="Brief description of your issue"
                 className="w-full p-3 bg-background border-2 border-border rounded-xl text-foreground placeholder:text-muted-foreground/50 focus:border-primary focus:outline-none transition-colors text-sm"
               />
             </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block mb-1.5 font-semibold text-foreground text-sm">Device (optional)</label>
+                <input
+                  type="text"
+                  value={form.device}
+                  onChange={e => update('device', e.target.value)}
+                  placeholder="e.g., iPhone 15, Windows PC"
+                  className="w-full p-3 bg-background border-2 border-border rounded-xl text-foreground placeholder:text-muted-foreground/50 focus:border-primary focus:outline-none transition-colors text-sm"
+                />
+              </div>
+              <div>
+                <label className="block mb-1.5 font-semibold text-foreground text-sm">Browser (optional)</label>
+                <input
+                  type="text"
+                  value={form.browser}
+                  onChange={e => update('browser', e.target.value)}
+                  placeholder="e.g., Chrome 120, Safari 17"
+                  className="w-full p-3 bg-background border-2 border-border rounded-xl text-foreground placeholder:text-muted-foreground/50 focus:border-primary focus:outline-none transition-colors text-sm"
+                />
+              </div>
+            </div>
+
             <div>
-              <label className="block mb-1.5 font-semibold text-foreground text-sm">Email Address *</label>
-              <input
-                type="email"
+              <label className="block mb-1.5 font-semibold text-foreground text-sm">Message *</label>
+              <textarea
                 required
-                value={form.email}
-                onChange={e => update('email', e.target.value)}
-                placeholder="john@example.com"
-                className="w-full p-3 bg-background border-2 border-border rounded-xl text-foreground placeholder:text-muted-foreground/50 focus:border-primary focus:outline-none transition-colors text-sm"
+                rows={6}
+                value={form.message}
+                onChange={e => update('message', e.target.value)}
+                placeholder="Describe your issue or feedback in detail. For bug reports, please include steps to reproduce the problem..."
+                className="w-full p-3 bg-background border-2 border-border rounded-xl text-foreground placeholder:text-muted-foreground/50 focus:border-primary focus:outline-none transition-colors resize-y text-sm"
               />
             </div>
-          </div>
 
-          <div>
-            <label className="block mb-1.5 font-semibold text-foreground text-sm">Issue Type *</label>
-            <select
-              required
-              value={form.issue}
-              onChange={e => update('issue', e.target.value)}
-              className="w-full p-3 bg-background border-2 border-border rounded-xl text-foreground focus:border-primary focus:outline-none transition-colors text-sm"
+            <button
+              type="submit"
+              className="w-full py-3 rounded-xl font-semibold bg-gradient-to-r from-primary to-secondary text-primary-foreground shadow-lg shadow-primary/30 hover:-translate-y-1 transition-transform text-sm sm:text-base"
             >
-              <option value="" disabled>Select an issue type...</option>
-              {issueTypes.map(t => (
-                <option key={t} value={t}>{t}</option>
-              ))}
-            </select>
-          </div>
+              📩 Send Message
+            </button>
 
-          <div>
-            <label className="block mb-1.5 font-semibold text-foreground text-sm">Subject *</label>
-            <input
-              type="text"
-              required
-              value={form.subject}
-              onChange={e => update('subject', e.target.value)}
-              placeholder="Brief description of your issue"
-              className="w-full p-3 bg-background border-2 border-border rounded-xl text-foreground placeholder:text-muted-foreground/50 focus:border-primary focus:outline-none transition-colors text-sm"
-            />
-          </div>
-
-          <div>
-            <label className="block mb-1.5 font-semibold text-foreground text-sm">Message *</label>
-            <textarea
-              required
-              rows={5}
-              value={form.message}
-              onChange={e => update('message', e.target.value)}
-              placeholder="Describe your issue or feedback in detail..."
-              className="w-full p-3 bg-background border-2 border-border rounded-xl text-foreground placeholder:text-muted-foreground/50 focus:border-primary focus:outline-none transition-colors resize-y text-sm"
-            />
-          </div>
-
-          <button
-            type="submit"
-            className="w-full py-3 rounded-xl font-semibold bg-gradient-to-r from-primary to-secondary text-primary-foreground shadow-lg shadow-primary/30 hover:-translate-y-1 transition-transform text-sm sm:text-base"
-          >
-            📩 Send Message
-          </button>
-        </form>
+            <p className="text-[10px] sm:text-xs text-muted-foreground text-center">
+              By submitting this form, you agree to our Terms & Conditions and Privacy Policy. We typically respond within 24-48 hours.
+            </p>
+          </form>
+        </>
       )}
+    </div>
+  );
+}
+
+function QuickHelp({ emoji, title, description }: { emoji: string; title: string; description: string }) {
+  return (
+    <div className="p-3 bg-background rounded-xl border border-border text-center">
+      <div className="text-xl mb-1">{emoji}</div>
+      <h4 className="font-bold text-foreground text-xs mb-0.5">{title}</h4>
+      <p className="text-[10px] sm:text-xs text-muted-foreground">{description}</p>
     </div>
   );
 }

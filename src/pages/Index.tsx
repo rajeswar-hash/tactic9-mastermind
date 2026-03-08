@@ -10,7 +10,7 @@ import HelpPage from '@/components/HelpPage';
 import TermsOfService from '@/components/TermsOfService';
 import AboutPage from '@/components/AboutPage';
 import StrategyGuide from '@/components/StrategyGuide';
-import PuzzleChallenges from '@/components/PuzzleChallenges';
+
 import {
   GameMode, Difficulty, GameState, GameStats,
   createInitialState, loadStats, saveStats,
@@ -254,12 +254,6 @@ export default function Index() {
     </div>
   );
 
-  if (page === 'puzzles') return (
-    <div className="min-h-screen">
-      <NavBar currentPage={page} onNavigate={setPage} />
-      <div className="max-w-[1400px] mx-auto px-3 sm:px-4 mt-6 sm:mt-8"><PuzzleChallenges /></div>
-    </div>
-  );
 
   return (
     <div className="min-h-screen">
