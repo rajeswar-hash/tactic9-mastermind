@@ -52,6 +52,8 @@ export default function ContactPage() {
         Have a bug to report, a feature idea, gameplay issue, or just want to share feedback? We're here to help — reach out about anything!
       </p>
 
+      <SupportChat />
+
       {sent ? (
         <div className="text-center py-12">
           <div className="text-5xl mb-4">✅</div>
