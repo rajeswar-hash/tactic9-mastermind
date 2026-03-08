@@ -1,4 +1,5 @@
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import NavBar from '@/components/NavBar';
 import GameBoard from '@/components/GameBoard';
 import StatsCard from '@/components/StatsCard';
@@ -18,8 +19,30 @@ import {
 import { checkWinner, isBoardFull, getAIMove } from '@/lib/gameAI';
 import { playMoveSound, playWinSound, playDrawSound, playUndoSound } from '@/lib/sounds';
 
-export default function Index() {
-  const [page, setPage] = useState('home');
+type IndexPage = 'home' | 'about' | 'howto' | 'strategy' | 'help' | 'contact' | 'terms' | 'privacy';
+
+const pageToPath: Record<IndexPage, string> = {
+  home: '/',
+  about: '/about',
+  howto: '/howto',
+  strategy: '/strategy',
+  help: '/help',
+  contact: '/contact',
+  terms: '/terms',
+  privacy: '/privacy',
+};
+
+const validPages = new Set<IndexPage>(Object.keys(pageToPath) as IndexPage[]);
+
+interface IndexProps {
+  initialPage?: IndexPage;
+}
+
+export default function Index({ initialPage = 'home' }: IndexProps) {
+  const navigate = useNavigate();
+  const safeInitialPage = validPages.has(initialPage) ? initialPage : 'home';
+
+  const [page, setPage] = useState<IndexPage>(safeInitialPage);
   const [mode, setMode] = useState<GameMode>('bot');
   const [difficulty, setDifficulty] = useState<Difficulty>('medium');
   const [game, setGame] = useState<GameState>(createInitialState());
@@ -205,51 +228,61 @@ export default function Index() {
     else setBotStats(empty);
   };
 
+  useEffect(() => {
+    setPage(safeInitialPage);
+  }, [safeInitialPage]);
+
+  const handleNavigate = useCallback((nextPage: string) => {
+    const targetPage = (validPages.has(nextPage as IndexPage) ? nextPage : 'home') as IndexPage;
+    setPage(targetPage);
+    navigate(pageToPath[targetPage]);
+  }, [navigate]);
+
   if (page === 'howto') return (
     <div className="min-h-screen">
-      <NavBar currentPage={page} onNavigate={setPage} />
+      <NavBar currentPage={page} onNavigate={handleNavigate} />
       <div className="max-w-[1400px] mx-auto px-3 sm:px-4 mt-6 sm:mt-8"><HowToPlay /></div>
     </div>
   );
 
   if (page === 'contact') return (
     <div className="min-h-screen">
-      <NavBar currentPage={page} onNavigate={setPage} />
+      <NavBar currentPage={page} onNavigate={handleNavigate} />
       <div className="max-w-[1400px] mx-auto px-3 sm:px-4 mt-6 sm:mt-8"><ContactPage /></div>
     </div>
   );
 
   if (page === 'privacy') return (
     <div className="min-h-screen">
-      <NavBar currentPage={page} onNavigate={setPage} />
+      <NavBar currentPage={page} onNavigate={handleNavigate} />
       <div className="max-w-[1400px] mx-auto px-3 sm:px-4 mt-6 sm:mt-8"><PrivacyPolicy /></div>
     </div>
   );
 
   if (page === 'help') return (
     <div className="min-h-screen">
-      <NavBar currentPage={page} onNavigate={setPage} />
+      <NavBar currentPage={page} onNavigate={handleNavigate} />
       <div className="max-w-[1400px] mx-auto px-3 sm:px-4 mt-6 sm:mt-8"><HelpPage /></div>
     </div>
   );
 
   if (page === 'terms') return (
     <div className="min-h-screen">
-      <NavBar currentPage={page} onNavigate={setPage} />
+      <NavBar currentPage={page} onNavigate={handleNavigate} />
       <div className="max-w-[1400px] mx-auto px-3 sm:px-4 mt-6 sm:mt-8"><TermsOfService /></div>
     </div>
   );
 
   if (page === 'about') return (
     <div className="min-h-screen">
-      <NavBar currentPage={page} onNavigate={setPage} />
+      <NavBar currentPage={page} onNavigate={handleNavigate} />
       <div className="max-w-[1400px] mx-auto px-3 sm:px-4 mt-6 sm:mt-8"><AboutPage /></div>
     </div>
   );
 
   if (page === 'strategy') return (
     <div className="min-h-screen">
-      <NavBar currentPage={page} onNavigate={setPage} />
+      <NavBar currentPage={page} onNavigate={handleNavigate} />
       <div className="max-w-[1400px] mx-auto px-3 sm:px-4 mt-6 sm:mt-8"><StrategyGuide /></div>
     </div>
   );
@@ -257,7 +290,7 @@ export default function Index() {
 
   return (
     <div className="min-h-screen">
-      <NavBar currentPage={page} onNavigate={setPage} />
+      <NavBar currentPage={page} onNavigate={handleNavigate} />
 
       {/* Hero */}
       <header className="text-center pt-8 sm:pt-10 pb-3 sm:pb-4 px-4">
@@ -418,7 +451,7 @@ export default function Index() {
               ))}
             </ul>
             <button
-              onClick={() => setPage('howto')}
+              onClick={() => handleNavigate('howto')}
               className="mt-3 text-xs font-semibold text-primary hover:underline"
             >
               Read full guide →

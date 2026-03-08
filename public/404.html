@@ -8,11 +8,22 @@
   <body>
     <script>
       (function () {
-        const { origin, hostname, pathname } = window.location;
+        const { origin, hostname, pathname, search, hash } = window.location;
         const segments = pathname.split("/").filter(Boolean);
         const isGithubPagesProject = hostname.endsWith("github.io") && segments.length > 0;
-        const basePath = isGithubPagesProject ? `/${segments[0]}/` : "/";
-        window.location.replace(`${origin}${basePath}`);
+
+        const projectBase = isGithubPagesProject ? `/${segments[0]}` : "";
+        const routePath = isGithubPagesProject
+          ? `/${segments.slice(1).join("/")}` || "/"
+          : pathname || "/";
+
+        const params = new URLSearchParams();
+        params.set("p", routePath || "/");
+
+        if (search.length > 1) params.set("q", search.slice(1));
+        if (hash.length > 1) params.set("h", hash.slice(1));
+
+        window.location.replace(`${origin}${projectBase}/?${params.toString()}`);
       })();
     </script>
   </body>
