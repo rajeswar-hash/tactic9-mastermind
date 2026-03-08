@@ -558,16 +558,16 @@ function ModeButton({ active, icon, label, sub, onClick }: {
   return (
     <button
       onClick={onClick}
-      className={`flex-1 min-w-[120px] p-3 sm:p-4 rounded-2xl border-2 font-semibold transition-all flex flex-col items-center gap-1
+      className={`flex-1 px-3 py-2.5 rounded-xl border-2 font-semibold transition-all flex items-center justify-center gap-2
         ${active
-          ? 'bg-gradient-to-r from-primary to-secondary border-transparent text-primary-foreground shadow-[0_0_40px_hsl(var(--primary)/0.3)]'
-          : 'bg-card border-border text-muted-foreground hover:border-primary hover:-translate-y-1'
+          ? 'bg-gradient-to-r from-primary to-secondary border-transparent text-primary-foreground shadow-md shadow-primary/20'
+          : 'bg-background border-border text-muted-foreground hover:border-primary/50'
         }
       `}
     >
-      <span className="text-xl sm:text-2xl">{icon}</span>
-      <span className="text-sm">{label}</span>
-      <span className="text-[10px] sm:text-xs opacity-70">{sub}</span>
+      <span className="text-base">{icon}</span>
+      <span className="text-xs sm:text-sm">{label}</span>
+      <span className="text-[10px] opacity-60 hidden sm:inline">({sub})</span>
     </button>
   );
 }
