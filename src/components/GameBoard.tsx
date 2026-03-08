@@ -10,9 +10,9 @@ interface GameBoardProps {
 
 export default function GameBoard({ board, winningCells, lastMove, gameOver, onCellClick }: GameBoardProps) {
   return (
-    <div className="flex justify-center my-3 sm:my-6 p-1.5 sm:p-4 bg-background rounded-xl sm:rounded-2xl border border-border">
+    <div className="flex justify-center my-3 sm:my-6 p-1.5 sm:p-4 bg-background rounded-xl sm:rounded-2xl border border-border h-full">
       <div
-        className="grid gap-[2px] sm:gap-[4px] md:gap-[6px] p-1.5 sm:p-2 md:p-3 rounded-xl sm:rounded-2xl bg-card-light w-full max-w-[500px]"
+        className="grid gap-[2px] sm:gap-[4px] md:gap-[6px] p-1.5 sm:p-2 md:p-3 rounded-xl sm:rounded-2xl bg-card-light w-full aspect-square"
         style={{ gridTemplateColumns: 'repeat(9, 1fr)' }}
       >
         {board.map((cell, i) => {
