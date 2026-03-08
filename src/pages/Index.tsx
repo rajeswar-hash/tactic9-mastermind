@@ -317,6 +317,13 @@ export default function Index({ initialPage = 'home' }: IndexProps) {
             </h2>
             <div className="flex gap-1.5 sm:gap-2 flex-wrap">
               <button
+                onClick={() => setFullscreen(true)}
+                className="px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-semibold bg-card-light text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-all"
+                title="Fullscreen"
+              >
+                ⛶
+              </button>
+              <button
                 onClick={() => setSoundOn(!soundOn)}
                 className={`px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${soundOn ? 'bg-success text-primary-foreground' : 'bg-card-light text-muted-foreground'}`}
               >
