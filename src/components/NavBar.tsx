@@ -9,9 +9,11 @@ const pages = [
   { id: 'home', label: 'Home' },
   { id: 'about', label: 'About' },
   { id: 'howto', label: 'How to Play' },
+  { id: 'strategy', label: 'Strategy Guide' },
+  { id: 'puzzles', label: 'Puzzles' },
   { id: 'help', label: 'Help' },
   { id: 'contact', label: 'Contact Us' },
-  { id: 'terms', label: 'Terms' },
+  { id: 'terms', label: 'Terms & Conditions' },
   { id: 'privacy', label: 'Privacy Policy' },
 ];
 
