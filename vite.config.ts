@@ -4,7 +4,7 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 export default defineConfig(({ mode }) => ({
-  base: "/",
+  base: process.env.GITHUB_ACTIONS ? "/tactic9-mastermind/" : "/",
   server: {
     host: "::",
     port: 8080,
