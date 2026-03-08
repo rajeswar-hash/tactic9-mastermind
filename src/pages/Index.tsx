@@ -49,6 +49,7 @@ export default function Index({ initialPage = 'home' }: IndexProps) {
   const [soundOn, setSoundOn] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [thinking, setThinking] = useState(false);
+  const [fullscreen, setFullscreen] = useState(false);
 
   const [friendStats, setFriendStats] = useState<GameStats>(() => loadStats('tactic9_friend'));
   const [botStats, setBotStats] = useState<GameStats>(() => loadStats('tactic9_bot'));
