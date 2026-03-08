@@ -2,18 +2,18 @@ export default function AboutPage() {
   return (
     <div className="max-w-4xl mx-auto p-5 sm:p-8 bg-card rounded-3xl border border-border animate-[fadeIn_0.4s_ease]">
       <h2 className="text-2xl sm:text-3xl font-extrabold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-2">
-        ℹ️ About Tactic9-Mastermind
+        ℹ️ About Tactic9
       </h2>
       <p className="text-xs text-muted-foreground mb-8">Learn everything about the game that redefines strategic thinking</p>
 
-      <Section title="What is Tactic9-Mastermind?">
-        <p>Tactic9-Mastermind is an advanced strategy game that evolves the classic tic-tac-toe into a deeper, more engaging experience. Played on a 9×9 grid, players must connect five marks in a row — horizontally, vertically, or diagonally — to win.</p>
-        <p className="mt-2">Unlike traditional 3×3 tic-tac-toe which often ends in draws, Tactic9-Mastermind's expanded board creates virtually unlimited strategic possibilities. Every game is unique, and mastery requires both tactical awareness and long-term planning.</p>
+      <Section title="What is Tactic9?">
+        <p>Tactic9 is an advanced strategy game that evolves the classic tic-tac-toe into a deeper, more engaging experience. Played on a 9×9 grid, players must connect five marks in a row — horizontally, vertically, or diagonally — to win.</p>
+        <p className="mt-2">Unlike traditional 3×3 tic-tac-toe which often ends in draws, Tactic9's expanded board creates virtually unlimited strategic possibilities. Every game is unique, and mastery requires both tactical awareness and long-term planning.</p>
       </Section>
 
       <Section title="Our Mission">
-        <p>We believe great games don't need to be complicated. Tactic9-Mastermind is designed to be instantly accessible yet endlessly strategic. Whether you're a casual player looking for a quick mental challenge or a strategy enthusiast seeking depth, Tactic9-Mastermind delivers.</p>
-        <p className="mt-2">Our goal is to create a game that anyone can pick up in seconds but takes a lifetime to master. We're committed to keeping Tactic9-Mastermind free, fast, and fun for everyone.</p>
+        <p>We believe great games don't need to be complicated. Tactic9 is designed to be instantly accessible yet endlessly strategic. Whether you're a casual player looking for a quick mental challenge or a strategy enthusiast seeking depth, Tactic9 delivers.</p>
+        <p className="mt-2">Our goal is to create a game that anyone can pick up in seconds but takes a lifetime to master. We're committed to keeping Tactic9 free, fast, and fun for everyone.</p>
       </Section>
 
       <Section title="Game Modes">
@@ -47,7 +47,7 @@ export default function AboutPage() {
       </Section>
 
       <Section title="Technology">
-        <p>Tactic9-Mastermind is built with cutting-edge web technologies for a fast, smooth, and reliable experience:</p>
+        <p>Tactic9 is built with cutting-edge web technologies for a fast, smooth, and reliable experience:</p>
         <ul className="list-disc pl-5 space-y-1 mt-2">
           <li><strong>React</strong> — Component-based UI architecture for responsive, dynamic gameplay</li>
           <li><strong>TypeScript</strong> — Type-safe code ensuring reliability and fewer bugs</li>
@@ -59,7 +59,7 @@ export default function AboutPage() {
       </Section>
 
       <Section title="Accessibility & Compatibility">
-        <p>Tactic9-Mastermind is designed to work everywhere:</p>
+        <p>Tactic9 is designed to work everywhere:</p>
         <ul className="list-disc pl-5 space-y-1 mt-2">
           <li>✅ All modern browsers (Chrome, Firefox, Safari, Edge)</li>
           <li>✅ Mobile devices (iOS and Android)</li>
@@ -72,8 +72,8 @@ export default function AboutPage() {
 
 
       <Section title="Feedback & Support">
-        <p>We love hearing from our players! If you have suggestions, bug reports, feature requests, or just want to say hello, visit our <strong>Contact Us</strong> page. Your feedback directly shapes the future of Tactic9-Mastermind.</p>
-        <p className="mt-2">Join our community of strategy enthusiasts and help us make Tactic9-Mastermind the best it can be!</p>
+        <p>We love hearing from our players! If you have suggestions, bug reports, feature requests, or just want to say hello, visit our <strong>Contact Us</strong> page. Your feedback directly shapes the future of Tactic9.</p>
+        <p className="mt-2">Join our community of strategy enthusiasts and help us make Tactic9 the best it can be!</p>
       </Section>
     </div>
   );
