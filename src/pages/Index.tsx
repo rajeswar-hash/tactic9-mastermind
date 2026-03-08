@@ -509,22 +509,21 @@ export default function Index({ initialPage = 'home' }: IndexProps) {
   );
 }
 
-function ModeButton({ active, icon, label, sub, onClick }: {
-  active: boolean; icon: string; label: string; sub: string; onClick: () => void;
+function ModeButton({ active, icon, label, onClick }: {
+  active: boolean; icon: string; label: string; onClick: () => void;
 }) {
   return (
     <button
       onClick={onClick}
-      className={`flex-1 px-3 py-2.5 rounded-xl border-2 font-semibold transition-all flex items-center justify-center gap-2
+      className={`flex-1 px-3 py-2 rounded-xl border-2 font-semibold transition-all flex items-center justify-center gap-2 text-xs sm:text-sm
         ${active
           ? 'bg-gradient-to-r from-primary to-secondary border-transparent text-primary-foreground shadow-md shadow-primary/20'
-          : 'bg-background border-border text-muted-foreground hover:border-primary/50'
+          : 'bg-card border-border text-muted-foreground hover:border-primary/50'
         }
       `}
     >
-      <span className="text-base">{icon}</span>
-      <span className="text-xs sm:text-sm">{label}</span>
-      <span className="text-[10px] opacity-60 hidden sm:inline">({sub})</span>
+      <span>{icon}</span>
+      <span>{label}</span>
     </button>
   );
 }
