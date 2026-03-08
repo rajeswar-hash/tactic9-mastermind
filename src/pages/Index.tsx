@@ -293,99 +293,53 @@ export default function Index({ initialPage = 'home' }: IndexProps) {
     <div className="min-h-screen">
       <NavBar currentPage={page} onNavigate={handleNavigate} />
 
-      {/* Hero — compact */}
-      <header className="text-center pt-6 sm:pt-8 pb-2 px-4">
-        <h1 className="text-3xl sm:text-5xl font-black bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent tracking-tighter mb-1">
-          Tactic9
-        </h1>
-        <p className="text-xs sm:text-sm text-muted-foreground max-w-md mx-auto">
-          9×9 grid · 5 in a row to win · Challenge the AI
-        </p>
-      </header>
+      {/* Main Layout — centered, clean */}
+      <div className="max-w-[960px] mx-auto px-4 sm:px-6 pt-6 sm:pt-8 pb-10">
 
-      {/* Main Layout */}
-      <div className="max-w-[1100px] mx-auto px-3 sm:px-6 pb-10 grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-5">
+        {/* Title */}
+        <div className="text-center mb-6">
+          <h1 className="text-3xl sm:text-4xl font-black bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent tracking-tighter">
+            Tactic9
+          </h1>
+          <p className="text-xs text-muted-foreground mt-1">9×9 grid · 5 in a row · Challenge the AI</p>
+        </div>
 
-        {/* ─── Left: Game Area ─── */}
-        <div className="space-y-4">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_260px] gap-5 items-start">
 
-          {/* Controls Bar */}
-          <div className="bg-card rounded-2xl p-3 sm:p-4 border border-border flex flex-col sm:flex-row sm:items-center gap-3">
-            {/* Mode Toggle */}
-            <div className="flex gap-2 flex-1">
-              <ModeButton
-                active={mode === 'friend'}
-                icon="👥"
-                label="vs Friend"
-                sub="2P"
-                onClick={() => { setMode('friend'); newGame(); }}
-              />
-              <ModeButton
-                active={mode === 'bot'}
-                icon="🤖"
-                label="vs AI"
-                sub="1P"
-                onClick={() => { setMode('bot'); newGame(); }}
-              />
-            </div>
+          {/* ─── Game Column ─── */}
+          <div className="space-y-3">
 
-            {/* Difficulty (only in bot mode) */}
-            {mode === 'bot' && (
-              <div className="flex gap-1.5">
-                {(['easy', 'medium', 'hard'] as Difficulty[]).map(d => (
-                  <button
-                    key={d}
-                    onClick={() => { setDifficulty(d); newGame(); }}
-                    className={`flex-1 sm:flex-none px-3 sm:px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wide border-2 transition-all
-                      ${difficulty === d
-                        ? 'bg-primary border-primary text-primary-foreground shadow-md shadow-primary/20'
-                        : 'bg-background border-border text-muted-foreground hover:border-primary/50'
-                      }
-                    `}
-                  >
-                    {d}
-                  </button>
-                ))}
+            {/* Row 1: Mode + Difficulty */}
+            <div className="flex flex-wrap items-center gap-2">
+              <div className="flex gap-2 flex-1 min-w-[200px]">
+                <ModeButton active={mode === 'friend'} icon="👥" label="vs Friend" onClick={() => { setMode('friend'); newGame(); }} />
+                <ModeButton active={mode === 'bot'} icon="🤖" label="vs AI" onClick={() => { setMode('bot'); newGame(); }} />
               </div>
-            )}
-
-            {/* Action Buttons */}
-            <div className="flex gap-1.5 sm:ml-auto">
-              <button
-                onClick={() => setFullscreen(true)}
-                className="p-2 rounded-xl text-sm bg-background text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-all border border-border"
-                title="Fullscreen"
-              >
-                ⛶
-              </button>
-              <button
-                onClick={() => setSoundOn(!soundOn)}
-                className={`p-2 rounded-xl text-sm transition-all border ${soundOn ? 'bg-success/15 border-success/30 text-success' : 'bg-background border-border text-muted-foreground'}`}
-              >
-                {soundOn ? '🔊' : '🔇'}
-              </button>
-              <button
-                onClick={handleUndo}
-                disabled={game.history.length === 0 || game.gameOver || thinking}
-                className="px-3 py-2 rounded-xl text-xs font-semibold bg-warning/15 text-warning border border-warning/30 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-warning hover:text-background transition-all"
-              >
-                ↩ Undo
-              </button>
-              <button
-                onClick={newGame}
-                className="px-3 py-2 rounded-xl text-xs font-semibold bg-gradient-to-r from-primary to-secondary text-primary-foreground shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all"
-              >
-                New Game
-              </button>
+              {mode === 'bot' && (
+                <div className="flex rounded-xl overflow-hidden border border-border">
+                  {(['easy', 'medium', 'hard'] as Difficulty[]).map(d => (
+                    <button
+                      key={d}
+                      onClick={() => { setDifficulty(d); newGame(); }}
+                      className={`px-4 py-2 text-[11px] font-bold uppercase tracking-wider transition-all
+                        ${difficulty === d
+                          ? 'bg-primary text-primary-foreground'
+                          : 'bg-card text-muted-foreground hover:bg-primary/10'
+                        }
+                      `}
+                    >
+                      {d}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
-          </div>
 
-          {/* Board Card */}
-          <div className="bg-card rounded-2xl p-4 sm:p-5 border border-border shadow-[0_0_60px_hsl(var(--primary)/0.08)]">
-            {/* Turn & Status */}
-            <div className="flex justify-between items-center mb-4">
-              <div className="flex items-center gap-2.5">
-                <div className={`w-8 h-8 rounded-lg flex items-center justify-center font-extrabold text-sm text-primary-foreground
+            {/* Row 2: Actions bar */}
+            <div className="flex items-center justify-between gap-2 bg-card/50 rounded-xl px-3 py-2 border border-border/50">
+              {/* Turn indicator */}
+              <div className="flex items-center gap-2">
+                <div className={`w-7 h-7 rounded-md flex items-center justify-center font-extrabold text-xs text-primary-foreground
                   ${game.currentPlayer === 'X'
                     ? 'bg-gradient-to-br from-accent to-primary'
                     : 'bg-gradient-to-br from-secondary to-warning'
@@ -393,74 +347,77 @@ export default function Index({ initialPage = 'home' }: IndexProps) {
                 >
                   {game.currentPlayer}
                 </div>
-                <span className="text-sm font-medium text-foreground">
+                <span className="text-xs font-medium text-foreground">
                   {thinking ? 'AI thinking…' : game.gameOver
-                    ? (game.winner ? `Player ${game.winner} wins!` : "Draw!")
-                    : `Player ${game.currentPlayer}'s turn`}
+                    ? (game.winner ? `${game.winner} wins!` : 'Draw!')
+                    : `${game.currentPlayer}'s turn`}
                 </span>
                 {thinking && (
-                  <div className="flex gap-1 ml-1">
+                  <div className="flex gap-1">
                     {[0, 1, 2].map(i => (
                       <span key={i} className="w-1.5 h-1.5 bg-primary rounded-full animate-[thinkingBounce_1.4s_ease-in-out_infinite]" style={{ animationDelay: `${i * 0.2}s` }} />
                     ))}
                   </div>
                 )}
               </div>
-              <span className="text-xs text-muted-foreground tabular-nums">Move {game.moveCount}</span>
+              {/* Buttons */}
+              <div className="flex items-center gap-1.5">
+                <span className="text-[10px] text-muted-foreground tabular-nums mr-1 hidden sm:inline">Move {game.moveCount}</span>
+                <button onClick={() => setFullscreen(true)} className="w-8 h-8 rounded-lg flex items-center justify-center text-sm bg-background border border-border text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-all" title="Fullscreen">⛶</button>
+                <button onClick={() => setSoundOn(!soundOn)} className={`w-8 h-8 rounded-lg flex items-center justify-center text-sm transition-all border ${soundOn ? 'bg-success/15 border-success/30 text-success' : 'bg-background border-border text-muted-foreground'}`}>{soundOn ? '🔊' : '🔇'}</button>
+                <button onClick={handleUndo} disabled={game.history.length === 0 || game.gameOver || thinking} className="h-8 px-2.5 rounded-lg text-[11px] font-semibold bg-warning/15 text-warning border border-warning/30 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-warning hover:text-background transition-all">↩ Undo</button>
+                <button onClick={newGame} className="h-8 px-3 rounded-lg text-[11px] font-semibold bg-gradient-to-r from-primary to-secondary text-primary-foreground hover:opacity-90 transition-all">New</button>
+              </div>
             </div>
 
-            <GameBoard
-              board={game.board}
-              winningCells={game.winningCells}
-              lastMove={game.lastMove}
-              gameOver={game.gameOver}
-              onCellClick={handleCellClick}
-            />
-
-            {/* Win/Draw Banner */}
-            {game.gameOver && (
-              <div className={`text-center p-3 mt-4 rounded-xl font-bold text-base animate-[fadeIn_0.4s_ease]
-                ${game.winner
-                  ? 'bg-success/10 text-success border border-success/30'
-                  : 'bg-warning/10 text-warning border border-warning/30'
-                }`}
-              >
-                {game.winner ? `🏆 Player ${game.winner} Wins!` : "🤝 It's a Draw!"}
-              </div>
-            )}
+            {/* Board */}
+            <div className="bg-card rounded-2xl p-3 sm:p-4 border border-border">
+              <GameBoard
+                board={game.board}
+                winningCells={game.winningCells}
+                lastMove={game.lastMove}
+                gameOver={game.gameOver}
+                onCellClick={handleCellClick}
+              />
+              {game.gameOver && (
+                <div className={`text-center p-2.5 mt-3 rounded-xl font-bold text-sm animate-[fadeIn_0.4s_ease]
+                  ${game.winner
+                    ? 'bg-success/10 text-success border border-success/30'
+                    : 'bg-warning/10 text-warning border border-warning/30'
+                  }`}
+                >
+                  {game.winner ? `🏆 Player ${game.winner} Wins!` : "🤝 It's a Draw!"}
+                </div>
+              )}
+            </div>
           </div>
-        </div>
 
-        {/* ─── Right: Sidebar ─── */}
-        <div className="space-y-4">
-          <StatsCard title="vs Friend" icon="👥" stats={friendStats} onReset={() => resetStats('tactic9_friend')} compact />
-          <StatsCard title="vs Computer" icon="🤖" stats={botStats} onReset={() => resetStats('tactic9_bot')} compact />
-
-          {/* Quick Guide */}
-          <div className="bg-card rounded-2xl p-4 border border-border">
-            <h3 className="text-sm font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-3">
-              📖 Quick Guide
-            </h3>
-            <ul className="space-y-2">
-              {[
-                'Place X or O on the 9×9 grid',
-                'Connect 5 in a row to win',
-                'Horizontal, vertical, or diagonal',
-                'X always goes first',
-                'Use Undo to take back moves',
-                'Block your opponent\'s lines!',
-              ].map(r => (
-                <li key={r} className="flex items-start gap-2 text-xs text-muted-foreground leading-relaxed">
-                  <span className="text-success font-bold mt-0.5">✓</span> {r}
-                </li>
-              ))}
-            </ul>
-            <button
-              onClick={() => handleNavigate('howto')}
-              className="mt-3 text-xs font-semibold text-primary hover:underline"
-            >
-              Full guide →
-            </button>
+          {/* ─── Sidebar ─── */}
+          <div className="space-y-3 lg:sticky lg:top-4">
+            <StatsCard title="vs Friend" icon="👥" stats={friendStats} onReset={() => resetStats('tactic9_friend')} compact />
+            <StatsCard title="vs Computer" icon="🤖" stats={botStats} onReset={() => resetStats('tactic9_bot')} compact />
+            <div className="bg-card rounded-xl p-3.5 border border-border">
+              <h3 className="text-xs font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-2.5">
+                📖 Quick Guide
+              </h3>
+              <ul className="space-y-1.5">
+                {[
+                  'Place X or O on the 9×9 grid',
+                  'Connect 5 in a row to win',
+                  'Horizontal, vertical, or diagonal',
+                  'X always goes first',
+                  'Use Undo to take back moves',
+                  'Block opponent lines!',
+                ].map(r => (
+                  <li key={r} className="flex items-start gap-1.5 text-[11px] text-muted-foreground leading-snug">
+                    <span className="text-success text-[10px] mt-px">✓</span> {r}
+                  </li>
+                ))}
+              </ul>
+              <button onClick={() => handleNavigate('howto')} className="mt-2.5 text-[11px] font-semibold text-primary hover:underline">
+                Full guide →
+              </button>
+            </div>
           </div>
         </div>
       </div>
