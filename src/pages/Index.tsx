@@ -299,7 +299,7 @@ export default function Index({ initialPage = 'home' }: IndexProps) {
         {/* Title */}
         <div className="text-center mb-6">
           <h1 className="text-3xl sm:text-4xl font-black bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent tracking-tighter">
-            Tactic9
+            Tactic9-Mastermind
           </h1>
           <p className="text-xs text-muted-foreground mt-1">9×9 grid · 5 in a row · Challenge the AI</p>
         </div>
