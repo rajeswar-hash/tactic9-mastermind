@@ -370,7 +370,7 @@ export default function Index({ initialPage = 'home' }: IndexProps) {
                 <button
                   key={d}
                   onClick={() => { setDifficulty(d); newGame(); }}
-                  className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-semibold border-2 transition-all
+                  className={`flex-1 px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-semibold border-2 transition-all
                     ${difficulty === d
                       ? 'bg-primary border-primary text-primary-foreground'
                       : 'bg-card border-border text-muted-foreground hover:border-primary'
