@@ -36,10 +36,17 @@ export default function NavBar({ currentPage, onNavigate }: NavBarProps) {
           ☰
         </button>
 
+        {mobileOpen && (
+          <div
+            className="fixed inset-0 z-40 md:hidden"
+            onClick={() => setMobileOpen(false)}
+          />
+        )}
+
         <ul className={`
           md:flex gap-8 list-none
           ${mobileOpen
-            ? 'flex flex-col absolute top-full left-0 w-full bg-background p-6 gap-4 border-b border-border'
+            ? 'flex flex-col absolute top-full left-0 w-full bg-background p-6 gap-4 border-b border-border z-50'
             : 'hidden'
           }
         `}>
