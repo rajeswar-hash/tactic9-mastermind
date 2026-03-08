@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { supabase } from '@/integrations/supabase/client';
+import { toast } from 'sonner';
 
 const issueTypes = [
   'Bug Report',
@@ -14,11 +16,28 @@ const issueTypes = [
 
 export default function ContactPage() {
   const [sent, setSent] = useState(false);
-  const [form, setForm] = useState({ name: '', email: '', issue: '', subject: '', message: '', device: '', browser: '' });
+  const [sending, setSending] = useState(false);
+  const [form, setForm] = useState({ name: '', email: '', issue: '', subject: '', message: '' });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSent(true);
+    setSending(true);
+
+    try {
+      const { data, error } = await supabase.functions.invoke('send-contact-email', {
+        body: form,
+      });
+
+      if (error) throw error;
+
+      setSent(true);
+      toast.success('Message sent successfully!');
+    } catch (err) {
+      console.error('Failed to send:', err);
+      toast.error('Failed to send message. Please try again later.');
+    } finally {
+      setSending(false);
+    }
   };
 
   const update = (field: string, value: string) => setForm(prev => ({ ...prev, [field]: value }));
@@ -39,7 +58,7 @@ export default function ContactPage() {
           <p className="text-muted-foreground mb-2">Thanks for reaching out. We'll get back to you as soon as possible.</p>
           <p className="text-xs text-muted-foreground mb-6">You should receive a confirmation email shortly. Please check your spam folder if you don't see it.</p>
           <button
-            onClick={() => { setSent(false); setForm({ name: '', email: '', issue: '', subject: '', message: '', device: '', browser: '' }); }}
+            onClick={() => { setSent(false); setForm({ name: '', email: '', issue: '', subject: '', message: '' }); }}
             className="px-5 py-2.5 rounded-xl font-semibold bg-gradient-to-r from-primary to-secondary text-primary-foreground hover:-translate-y-0.5 transition-transform"
           >
             Send Another Message
@@ -47,7 +66,6 @@ export default function ContactPage() {
         </div>
       ) : (
         <>
-          {/* Quick help cards */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
             <QuickHelp emoji="🐛" title="Bug Report" description="Found something broken? Let us know with details." />
             <QuickHelp emoji="💡" title="Feature Request" description="Have an idea to improve the game? We'd love to hear it!" />
@@ -107,29 +125,6 @@ export default function ContactPage() {
               />
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block mb-1.5 font-semibold text-foreground text-sm">Device (optional)</label>
-                <input
-                  type="text"
-                  value={form.device}
-                  onChange={e => update('device', e.target.value)}
-                  placeholder="e.g., iPhone 15, Windows PC"
-                  className="w-full p-3 bg-background border-2 border-border rounded-xl text-foreground placeholder:text-muted-foreground/50 focus:border-primary focus:outline-none transition-colors text-sm"
-                />
-              </div>
-              <div>
-                <label className="block mb-1.5 font-semibold text-foreground text-sm">Browser (optional)</label>
-                <input
-                  type="text"
-                  value={form.browser}
-                  onChange={e => update('browser', e.target.value)}
-                  placeholder="e.g., Chrome 120, Safari 17"
-                  className="w-full p-3 bg-background border-2 border-border rounded-xl text-foreground placeholder:text-muted-foreground/50 focus:border-primary focus:outline-none transition-colors text-sm"
-                />
-              </div>
-            </div>
-
             <div>
               <label className="block mb-1.5 font-semibold text-foreground text-sm">Message *</label>
               <textarea
@@ -144,9 +139,10 @@ export default function ContactPage() {
 
             <button
               type="submit"
-              className="w-full py-3 rounded-xl font-semibold bg-gradient-to-r from-primary to-secondary text-primary-foreground shadow-lg shadow-primary/30 hover:-translate-y-1 transition-transform text-sm sm:text-base"
+              disabled={sending}
+              className="w-full py-3 rounded-xl font-semibold bg-gradient-to-r from-primary to-secondary text-primary-foreground shadow-lg shadow-primary/30 hover:-translate-y-1 transition-transform text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              📩 Send Message
+              {sending ? '📨 Sending...' : '📩 Send Message'}
             </button>
 
             <p className="text-[10px] sm:text-xs text-muted-foreground text-center">
