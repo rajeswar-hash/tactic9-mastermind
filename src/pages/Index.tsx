@@ -468,6 +468,81 @@ export default function Index({ initialPage = 'home' }: IndexProps) {
         </div>
       </div>
 
+      {/* Fullscreen Mode */}
+      {fullscreen && (
+        <div className="fixed inset-0 z-[100] bg-background flex flex-col items-center justify-center p-4">
+          {/* Top bar */}
+          <div className="w-full max-w-[540px] flex justify-between items-center mb-3">
+            <div className="flex items-center gap-2">
+              <span className="text-xs sm:text-sm text-muted-foreground">Turn:</span>
+              <div className={`w-8 h-8 rounded-lg flex items-center justify-center font-extrabold text-sm text-primary-foreground
+                ${game.currentPlayer === 'X'
+                  ? 'bg-gradient-to-br from-accent to-primary'
+                  : 'bg-gradient-to-br from-secondary to-warning'
+                }`}
+              >
+                {game.currentPlayer}
+              </div>
+              {thinking && (
+                <div className="flex gap-1 ml-2">
+                  {[0, 1, 2].map(i => (
+                    <span key={i} className="w-1.5 h-1.5 bg-primary rounded-full animate-[thinkingBounce_1.4s_ease-in-out_infinite]" style={{ animationDelay: `${i * 0.2}s` }} />
+                  ))}
+                </div>
+              )}
+            </div>
+            <div className="flex gap-1.5">
+              <button
+                onClick={handleUndo}
+                disabled={game.history.length === 0 || game.gameOver || thinking}
+                className="px-2.5 py-1.5 rounded-xl text-xs font-semibold bg-warning text-background disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                ↩ Undo
+              </button>
+              <button
+                onClick={newGame}
+                className="px-2.5 py-1.5 rounded-xl text-xs font-semibold bg-gradient-to-r from-primary to-secondary text-primary-foreground"
+              >
+                🔄 New
+              </button>
+              <button
+                onClick={() => setFullscreen(false)}
+                className="px-2.5 py-1.5 rounded-xl text-xs font-semibold bg-card-light text-muted-foreground hover:bg-destructive hover:text-primary-foreground transition-all"
+              >
+                ✕ Exit
+              </button>
+            </div>
+          </div>
+
+          {/* Board */}
+          <div className="w-full max-w-[540px] flex-1 flex items-center justify-center min-h-0">
+            <div className="w-full">
+              <GameBoard
+                board={game.board}
+                winningCells={game.winningCells}
+                lastMove={game.lastMove}
+                gameOver={game.gameOver}
+                onCellClick={handleCellClick}
+              />
+            </div>
+          </div>
+
+          {/* Status */}
+          {game.gameOver && (
+            <div className={`w-full max-w-[540px] text-center p-3 mt-2 rounded-xl font-bold text-base animate-[fadeIn_0.4s_ease]
+              ${game.winner
+                ? 'bg-success/15 text-success border-2 border-success'
+                : 'bg-warning/15 text-warning border-2 border-warning'
+              }`}
+            >
+              {game.winner ? `🏆 Player ${game.winner} Wins!` : "🤝 It's a Draw!"}
+            </div>
+          )}
+
+          <div className="text-xs text-muted-foreground mt-2">Moves: {game.moveCount}</div>
+        </div>
+      )}
+
       {showModal && (
         <WinModal
           winner={game.winner}
