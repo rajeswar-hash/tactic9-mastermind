@@ -14,19 +14,19 @@ export default function StatsCard({ title, icon, stats, onReset, compact }: Stat
   const drawRate = stats.totalGames ? Math.round((stats.draws / stats.totalGames) * 100) : 0;
 
   return (
-    <div className="bg-card rounded-2xl p-4 border border-border">
-      <div className="flex justify-between items-center mb-3">
-        <h3 className="text-sm font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent flex items-center gap-1.5">
+    <div className="bg-card rounded-xl p-3.5 border border-border">
+      <div className="flex justify-between items-center mb-2.5">
+        <h3 className="text-xs font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent flex items-center gap-1.5">
           {icon} {title}
         </h3>
         <button
           onClick={onReset}
-          className="text-[10px] px-2 py-1 rounded-md bg-card-light text-muted-foreground hover:bg-destructive hover:text-foreground transition-all"
+          className="text-[10px] px-2 py-0.5 rounded-md bg-background text-muted-foreground hover:bg-destructive hover:text-foreground transition-all border border-border"
         >
           Reset
         </button>
       </div>
-      <div className={`grid ${compact ? 'grid-cols-4' : 'grid-cols-2'} gap-2`}>
+      <div className="grid grid-cols-4 gap-1.5">
         <StatItem label="Games" value={stats.totalGames} />
         <StatItem label="X Wins" value={stats.xWins} sub={`${xRate}%`} />
         <StatItem label="O Wins" value={stats.oWins} sub={`${oRate}%`} />
