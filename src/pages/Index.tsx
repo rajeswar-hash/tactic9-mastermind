@@ -296,13 +296,6 @@ export default function Index({ initialPage = 'home' }: IndexProps) {
       {/* Main Layout — centered, clean */}
       <div className="max-w-[960px] mx-auto px-4 sm:px-6 pt-6 sm:pt-8 pb-10">
 
-        {/* Title */}
-        <div className="text-center mb-6">
-          <h1 className="text-3xl sm:text-4xl font-black bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent tracking-tighter">
-            Tactic9-Mastermind
-          </h1>
-          <p className="text-xs text-muted-foreground mt-1">9×9 grid · 5 in a row · Challenge the AI</p>
-        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_260px] gap-5 items-start">
 
