@@ -18,7 +18,6 @@ import {
 } from '@/lib/gameTypes';
 import { checkWinner, isBoardFull, getAIMove } from '@/lib/gameAI';
 import { playMoveSound, playWinSound, playDrawSound, playUndoSound } from '@/lib/sounds';
-import { startBgMusic, stopBgMusic } from '@/lib/bgMusic';
 
 type IndexPage = 'home' | 'about' | 'howto' | 'strategy' | 'help' | 'contact' | 'terms' | 'privacy';
 
@@ -51,13 +50,6 @@ export default function Index({ initialPage = 'home' }: IndexProps) {
   const [showModal, setShowModal] = useState(false);
   const [thinking, setThinking] = useState(false);
   const [fullscreen, setFullscreen] = useState(false);
-  const [musicOn, setMusicOn] = useState(false);
-
-  useEffect(() => {
-    if (musicOn) startBgMusic();
-    else stopBgMusic();
-    return () => stopBgMusic();
-  }, [musicOn]);
 
   const [friendStats, setFriendStats] = useState<GameStats>(() => loadStats('tactic9_friend'));
   const [botStats, setBotStats] = useState<GameStats>(() => loadStats('tactic9_bot'));
@@ -330,13 +322,6 @@ export default function Index({ initialPage = 'home' }: IndexProps) {
                 title="Fullscreen"
               >
                 ⛶
-              </button>
-              <button
-                onClick={() => setMusicOn(!musicOn)}
-                className={`px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${musicOn ? 'bg-primary text-primary-foreground' : 'bg-card-light text-muted-foreground'}`}
-                title="Background Music"
-              >
-                {musicOn ? '🎵' : '🎵'}
               </button>
               <button
                 onClick={() => setSoundOn(!soundOn)}
