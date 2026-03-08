@@ -170,7 +170,7 @@ export default function SupportChat() {
       {open && (
         <div className="mt-3 bg-background rounded-2xl border border-border overflow-hidden animate-[fadeIn_0.3s_ease]">
           {/* Messages */}
-          <div className="h-[320px] overflow-y-auto p-4 space-y-3">
+          <div ref={chatContainerRef} className="h-[320px] overflow-y-auto p-4 space-y-3">
             {messages.length === 0 && (
               <div className="text-center py-6">
                 <span className="text-3xl block mb-2">👋</span>
@@ -230,7 +230,7 @@ export default function SupportChat() {
               </div>
             )}
 
-            <div ref={bottomRef} />
+            <div />
           </div>
 
           {/* Input */}
