@@ -70,12 +70,6 @@ export default function AboutPage() {
         </ul>
       </Section>
 
-      <Section title="Version History">
-        <div className="space-y-3 mt-2">
-          <VersionEntry version="1.0" date="March 2026" changes={["Initial release with 9×9 grid gameplay", "AI opponent with 3 difficulty levels", "Local multiplayer mode", "Sound effects and statistics tracking"]} />
-          <VersionEntry version="1.1" date="March 2026" changes={["Enhanced win animations and sound effects", "Added Strategy Guide and comprehensive documentation", "Improved mobile responsiveness", "Added About, Help, Terms & Conditions, and Privacy Policy pages"]} />
-        </div>
-      </Section>
 
       <Section title="Feedback & Support">
         <p>We love hearing from our players! If you have suggestions, bug reports, feature requests, or just want to say hello, visit our <strong>Contact Us</strong> page. Your feedback directly shapes the future of Tactic9.</p>
