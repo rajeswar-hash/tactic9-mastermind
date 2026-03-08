@@ -365,7 +365,7 @@ export default function Index({ initialPage = 'home' }: IndexProps) {
 
           {/* Difficulty */}
           {mode === 'bot' && (
-            <div className="flex gap-2 mb-4 flex-wrap">
+            <div className="flex gap-2 mb-4 w-full">
               {(['easy', 'medium', 'hard'] as Difficulty[]).map(d => (
                 <button
                   key={d}
