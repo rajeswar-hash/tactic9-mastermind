@@ -1,4 +1,5 @@
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import NavBar from '@/components/NavBar';
 import GameBoard from '@/components/GameBoard';
 import StatsCard from '@/components/StatsCard';
@@ -18,8 +19,30 @@ import {
 import { checkWinner, isBoardFull, getAIMove } from '@/lib/gameAI';
 import { playMoveSound, playWinSound, playDrawSound, playUndoSound } from '@/lib/sounds';
 
-export default function Index() {
-  const [page, setPage] = useState('home');
+type IndexPage = 'home' | 'about' | 'howto' | 'strategy' | 'help' | 'contact' | 'terms' | 'privacy';
+
+const pageToPath: Record<IndexPage, string> = {
+  home: '/',
+  about: '/about',
+  howto: '/howto',
+  strategy: '/strategy',
+  help: '/help',
+  contact: '/contact',
+  terms: '/terms',
+  privacy: '/privacy',
+};
+
+const validPages = new Set<IndexPage>(Object.keys(pageToPath) as IndexPage[]);
+
+interface IndexProps {
+  initialPage?: IndexPage;
+}
+
+export default function Index({ initialPage = 'home' }: IndexProps) {
+  const navigate = useNavigate();
+  const safeInitialPage = validPages.has(initialPage) ? initialPage : 'home';
+
+  const [page, setPage] = useState<IndexPage>(safeInitialPage);
   const [mode, setMode] = useState<GameMode>('bot');
   const [difficulty, setDifficulty] = useState<Difficulty>('medium');
   const [game, setGame] = useState<GameState>(createInitialState());
