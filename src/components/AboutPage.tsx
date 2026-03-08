@@ -55,7 +55,7 @@ export default function AboutPage() {
           <li><strong>Web Audio API</strong> — Real-time sound synthesis for immersive audio without loading external files</li>
           <li><strong>Local Storage</strong> — Your stats and preferences stay on your device — no server needed</li>
         </ul>
-        <p className="mt-2">The game runs entirely in your browser with zero server-side processing for gameplay. This means instant load times, no lag, and complete privacy.</p>
+        <p className="mt-2">Gameplay runs entirely in your browser with no server-side processing. Contact form submissions are handled by a secure backend service. This means instant load times, no lag, and complete privacy for your gameplay.</p>
       </Section>
 
       <Section title="Accessibility & Compatibility">

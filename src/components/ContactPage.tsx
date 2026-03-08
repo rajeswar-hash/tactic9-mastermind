@@ -55,8 +55,7 @@ export default function ContactPage() {
         <div className="text-center py-12">
           <div className="text-5xl mb-4">✅</div>
           <h3 className="text-xl font-bold text-foreground mb-2">Message Sent!</h3>
-          <p className="text-muted-foreground mb-2">Thanks for reaching out. We'll get back to you as soon as possible.</p>
-          <p className="text-xs text-muted-foreground mb-6">You should receive a confirmation email shortly. Please check your spam folder if you don't see it.</p>
+          <p className="text-muted-foreground mb-6">Thanks for reaching out. We've received your message and will review it as soon as possible.</p>
           <button
             onClick={() => { setSent(false); setForm({ name: '', email: '', issue: '', subject: '', message: '' }); }}
             className="px-5 py-2.5 rounded-xl font-semibold bg-gradient-to-r from-primary to-secondary text-primary-foreground hover:-translate-y-0.5 transition-transform"
