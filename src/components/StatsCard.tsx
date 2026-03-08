@@ -38,12 +38,12 @@ export default function StatsCard({ title, icon, stats, onReset, compact }: Stat
 
 function StatItem({ label, value, sub }: { label: string; value: number; sub?: string }) {
   return (
-    <div className="text-center p-2 bg-background rounded-lg border border-border/50 transition-all hover:-translate-y-0.5 hover:border-primary">
-      <div className="text-xl font-extrabold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+    <div className="text-center p-1.5 bg-background rounded-lg border border-border/50">
+      <div className="text-base font-extrabold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent leading-tight">
         {value}
       </div>
-      <div className="text-[10px] text-muted-foreground uppercase tracking-wider mt-0.5">{label}</div>
-      {sub && <div className="text-[9px] text-muted-foreground">{sub}</div>}
+      <div className="text-[9px] text-muted-foreground uppercase tracking-wider mt-0.5 truncate">{label}</div>
+      {sub && <div className="text-[8px] text-muted-foreground">{sub}</div>}
     </div>
   );
 }
