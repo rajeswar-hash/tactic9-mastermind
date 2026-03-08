@@ -309,30 +309,10 @@ export default function Index({ initialPage = 'home' }: IndexProps) {
           {/* ─── Game Column ─── */}
           <div className="space-y-3">
 
-            {/* Row 1: Mode + Difficulty */}
-            <div className="flex flex-wrap items-center gap-2">
-              <div className="flex gap-2 flex-1 min-w-[200px]">
-                <ModeButton active={mode === 'friend'} icon="👥" label="vs Friend" onClick={() => { setMode('friend'); newGame(); }} />
-                <ModeButton active={mode === 'bot'} icon="🤖" label="vs AI" onClick={() => { setMode('bot'); newGame(); }} />
-              </div>
-              {mode === 'bot' && (
-                <div className="flex rounded-xl overflow-hidden border border-border">
-                  {(['easy', 'medium', 'hard'] as Difficulty[]).map(d => (
-                    <button
-                      key={d}
-                      onClick={() => { setDifficulty(d); newGame(); }}
-                      className={`px-4 py-2 text-[11px] font-bold uppercase tracking-wider transition-all
-                        ${difficulty === d
-                          ? 'bg-primary text-primary-foreground'
-                          : 'bg-card text-muted-foreground hover:bg-primary/10'
-                        }
-                      `}
-                    >
-                      {d}
-                    </button>
-                  ))}
-                </div>
-              )}
+            {/* Mode Selection */}
+            <div className="flex gap-2">
+              <ModeButton active={mode === 'friend'} icon="👥" label="vs Friend" onClick={() => { setMode('friend'); newGame(); }} />
+              <ModeButton active={mode === 'bot'} icon="🤖" label="vs AI" onClick={() => { setMode('bot'); newGame(); }} />
             </div>
 
             {/* Row 2: Actions bar */}
@@ -379,6 +359,25 @@ export default function Index({ initialPage = 'home' }: IndexProps) {
                 gameOver={game.gameOver}
                 onCellClick={handleCellClick}
               />
+              {/* Difficulty below board */}
+              {mode === 'bot' && (
+                <div className="flex rounded-xl overflow-hidden border border-border mt-3">
+                  {(['easy', 'medium', 'hard'] as Difficulty[]).map(d => (
+                    <button
+                      key={d}
+                      onClick={() => { setDifficulty(d); newGame(); }}
+                      className={`flex-1 py-2 text-[11px] font-bold uppercase tracking-wider transition-all
+                        ${difficulty === d
+                          ? 'bg-primary text-primary-foreground'
+                          : 'bg-background text-muted-foreground hover:bg-primary/10'
+                        }
+                      `}
+                    >
+                      {d}
+                    </button>
+                  ))}
+                </div>
+              )}
               {game.gameOver && (
                 <div className={`text-center p-2.5 mt-3 rounded-xl font-bold text-sm animate-[fadeIn_0.4s_ease]
                   ${game.winner
