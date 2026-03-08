@@ -4,7 +4,7 @@ export default function StrategyGuide() {
       <h2 className="text-2xl sm:text-3xl font-extrabold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-2">
         🧠 Strategy Guide
       </h2>
-      <p className="text-xs text-muted-foreground mb-8">Master the art of Tactic9 with these comprehensive strategies — from beginner basics to advanced techniques</p>
+      <p className="text-xs text-muted-foreground mb-8">Master the art of Tactic9-Mastermind with these comprehensive strategies — from beginner basics to advanced techniques</p>
 
       <Section title="🎯 Opening Strategy" icon="1">
         <p className="mb-3">The opening moves set the tone for the entire game. Your first few placements determine whether you'll be attacking or defending for the rest of the match.</p>
@@ -109,11 +109,11 @@ export default function StrategyGuide() {
       </Section>
 
       <Section title="🏆 Path to Mastery" icon="7">
-        <p className="mb-3">Follow this progression to become a Tactic9 master:</p>
+        <p className="mb-3">Follow this progression to become a Tactic9-Mastermind master:</p>
         <ol className="list-decimal pl-5 space-y-2">
           <li><strong>Learn the Basics:</strong> Play on Easy until you can win consistently. Focus on building 5-in-a-row lines.</li>
           <li><strong>Develop Defense:</strong> Switch to Medium and learn to block while attacking. Master the threat hierarchy.</li>
-          <li><strong>Master Forks:</strong> Practice creating double threats. This is the single most important skill in Tactic9.</li>
+          <li><strong>Master Forks:</strong> Practice creating double threats. This is the single most important skill in Tactic9-Mastermind.</li>
           <li><strong>Study Patterns:</strong> Learn the advanced techniques (Ladder, Pincer, Decoy, etc.) and practice each one.</li>
           <li><strong>Beat Hard AI:</strong> Challenge yourself on Hard mode. Use Undo to study alternatives and refine your strategy.</li>
           <li><strong>Challenge Friends:</strong> Test your skills against human opponents who can adapt and surprise you.</li>

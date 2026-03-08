@@ -7,12 +7,12 @@ export default function TermsOfService() {
       <p className="text-xs text-muted-foreground mb-8">Last updated: March 8, 2026</p>
 
       <Section title="1. Acceptance of Terms">
-        <p>By accessing, browsing, or using Tactic9 ("the Service"), you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions ("Terms"). If you do not agree to these Terms, you must discontinue use of the Service immediately.</p>
-        <p className="mt-2">These Terms constitute a legally binding agreement between you ("User," "you," or "your") and Tactic9 Games ("we," "us," or "our").</p>
+        <p>By accessing, browsing, or using Tactic9-Mastermind ("the Service"), you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions ("Terms"). If you do not agree to these Terms, you must discontinue use of the Service immediately.</p>
+        <p className="mt-2">These Terms constitute a legally binding agreement between you ("User," "you," or "your") and Tactic9-Mastermind Games ("we," "us," or "our").</p>
       </Section>
 
       <Section title="2. Description of Service">
-        <p>Tactic9 is a free, browser-based strategy game played on a 9×9 grid where the objective is to connect five marks in a row. The Service includes:</p>
+        <p>Tactic9-Mastermind is a free, browser-based strategy game played on a 9×9 grid where the objective is to connect five marks in a row. The Service includes:</p>
         <ul className="list-disc pl-5 space-y-1 mt-2">
           <li>Single-player mode against AI opponents with multiple difficulty levels</li>
           <li>Local multiplayer mode for two players on the same device</li>
@@ -25,7 +25,7 @@ export default function TermsOfService() {
       </Section>
 
       <Section title="3. Eligibility">
-        <p>Tactic9 is intended for users of all ages. No minimum age requirement is imposed as the game contains no violent, explicit, or age-restricted content. However, users under the age of 13 should use the Service under parental or guardian supervision, particularly when using the Contact Us form.</p>
+        <p>Tactic9-Mastermind is intended for users of all ages. No minimum age requirement is imposed as the game contains no violent, explicit, or age-restricted content. However, users under the age of 13 should use the Service under parental or guardian supervision, particularly when using the Contact Us form.</p>
       </Section>
 
       <Section title="4. User Conduct">
@@ -43,7 +43,7 @@ export default function TermsOfService() {
       </Section>
 
       <Section title="5. Intellectual Property">
-        <p>All content, design, code, graphics, branding, logos, sound effects, animations, text, and other materials associated with Tactic9 are the intellectual property of Tactic9 Games and are protected by applicable copyright, trademark, and intellectual property laws.</p>
+        <p>All content, design, code, graphics, branding, logos, sound effects, animations, text, and other materials associated with Tactic9-Mastermind are the intellectual property of Tactic9-Mastermind Games and are protected by applicable copyright, trademark, and intellectual property laws.</p>
         <p className="mt-2">You may not reproduce, distribute, modify, create derivative works of, publicly display, publicly perform, republish, download, store, or transmit any of the material on our Service without prior written permission, except as follows:</p>
         <ul className="list-disc pl-5 space-y-1 mt-2">
           <li>You may share links to Tactic9 on social media or personal websites</li>
@@ -64,7 +64,7 @@ export default function TermsOfService() {
       </Section>
 
       <Section title="7. Service Availability">
-        <p>We strive to keep Tactic9 available at all times but do not guarantee uninterrupted, error-free, or continuous access. We may temporarily or permanently suspend the Service for:</p>
+        <p>We strive to keep Tactic9-Mastermind available at all times but do not guarantee uninterrupted, error-free, or continuous access. We may temporarily or permanently suspend the Service for:</p>
         <ul className="list-disc pl-5 space-y-1 mt-2">
           <li>Scheduled or emergency maintenance</li>
           <li>Software updates and feature improvements</li>
@@ -86,12 +86,12 @@ export default function TermsOfService() {
       </Section>
 
       <Section title="9. Limitation of Liability">
-        <p>Tactic9 is provided for entertainment purposes only. To the fullest extent permitted by applicable law, in no event shall Tactic9 Games, its directors, employees, partners, agents, or affiliates be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of data, loss of profits, or damage to devices, arising from your access to or use of the Service.</p>
+        <p>Tactic9-Mastermind is provided for entertainment purposes only. To the fullest extent permitted by applicable law, in no event shall Tactic9-Mastermind Games, its directors, employees, partners, agents, or affiliates be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of data, loss of profits, or damage to devices, arising from your access to or use of the Service.</p>
         <p className="mt-2">Our total liability for any claims arising from the Service shall not exceed the amount paid by you, if any, for accessing the Service.</p>
       </Section>
 
       <Section title="10. Indemnification">
-        <p>You agree to indemnify, defend, and hold harmless Tactic9 Games and its affiliates from and against any claims, liabilities, damages, losses, and expenses (including reasonable attorney's fees) arising from:</p>
+        <p>You agree to indemnify, defend, and hold harmless Tactic9-Mastermind Games and its affiliates from and against any claims, liabilities, damages, losses, and expenses (including reasonable attorney's fees) arising from:</p>
         <ul className="list-disc pl-5 space-y-1 mt-2">
           <li>Your use of the Service</li>
           <li>Your violation of these Terms</li>
@@ -101,7 +101,7 @@ export default function TermsOfService() {
       </Section>
 
       <Section title="11. Third-Party Links">
-        <p>The Service may contain links to third-party websites or services that are not owned or controlled by Tactic9 Games. We have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party websites or services.</p>
+        <p>The Service may contain links to third-party websites or services that are not owned or controlled by Tactic9-Mastermind Games. We have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party websites or services.</p>
       </Section>
 
       <Section title="12. Modifications to Terms">
@@ -122,7 +122,7 @@ export default function TermsOfService() {
       </Section>
 
       <Section title="16. Entire Agreement">
-        <p>These Terms, together with our Privacy Policy, constitute the entire agreement between you and Tactic9 Games regarding the use of the Service and supersede all prior agreements, understandings, and communications.</p>
+        <p>These Terms, together with our Privacy Policy, constitute the entire agreement between you and Tactic9-Mastermind Games regarding the use of the Service and supersede all prior agreements, understandings, and communications.</p>
       </Section>
 
       <Section title="17. Contact">
