@@ -1,5 +1,4 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
-import { Maximize2, Minimize2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '@/components/NavBar';
 import GameBoard from '@/components/GameBoard';
@@ -54,37 +53,8 @@ export default function Index({ initialPage = 'home' }: IndexProps) {
   const [friendStats, setFriendStats] = useState<GameStats>(() => loadStats('tactic9_friend'));
   const [botStats, setBotStats] = useState<GameStats>(() => loadStats('tactic9_bot'));
 
-  const [isFullscreen, setIsFullscreen] = useState(false);
-  const fullscreenRef = useRef<HTMLDivElement>(null);
-
   const gameRef = useRef(game);
   gameRef.current = game;
-
-  const toggleFullscreen = useCallback(() => {
-    if (!isFullscreen) {
-      const el = fullscreenRef.current;
-      if (el) {
-        const rfs = el.requestFullscreen || (el as any).webkitRequestFullscreen || (el as any).msRequestFullscreen;
-        rfs?.call(el);
-      }
-    } else {
-      const efd = document.exitFullscreen || (document as any).webkitExitFullscreen || (document as any).msExitFullscreen;
-      efd?.call(document);
-    }
-  }, [isFullscreen]);
-
-  useEffect(() => {
-    const handler = () => {
-      const fsEl = document.fullscreenElement || (document as any).webkitFullscreenElement;
-      setIsFullscreen(!!fsEl);
-    };
-    document.addEventListener('fullscreenchange', handler);
-    document.addEventListener('webkitfullscreenchange', handler);
-    return () => {
-      document.removeEventListener('fullscreenchange', handler);
-      document.removeEventListener('webkitfullscreenchange', handler);
-    };
-  }, []);
 
   const updateStats = useCallback((winner: string | null) => {
     const key = mode === 'friend' ? 'tactic9_friend' : 'tactic9_bot';
@@ -364,13 +334,6 @@ export default function Index({ initialPage = 'home' }: IndexProps) {
               >
                 🔄 New
               </button>
-              <button
-                onClick={toggleFullscreen}
-                className="px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-semibold bg-card-light text-foreground border border-border hover:-translate-y-0.5 transition-transform"
-                title="Fullscreen"
-              >
-                <Maximize2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-              </button>
             </div>
           </div>
 
@@ -426,54 +389,13 @@ export default function Index({ initialPage = 'home' }: IndexProps) {
             <span className="text-muted-foreground text-xs sm:text-sm">Computer is thinking...</span>
           </div>
 
-          {/* Fullscreen container */}
-          <div ref={fullscreenRef} className={isFullscreen ? 'fixed inset-0 z-50 bg-background flex flex-col items-center justify-center' : ''}>
-            {isFullscreen && (
-              <div className="absolute top-2 right-2 z-50 flex gap-2">
-                <button
-                  onClick={() => setSoundOn(!soundOn)}
-                  className={`p-2 rounded-xl text-sm font-semibold transition-all ${soundOn ? 'bg-success text-primary-foreground' : 'bg-card-light text-muted-foreground'}`}
-                >
-                  {soundOn ? '🔊' : '🔇'}
-                </button>
-                <button
-                  onClick={handleUndo}
-                  disabled={game.history.length === 0 || game.gameOver || thinking}
-                  className="p-2 rounded-xl text-sm font-semibold bg-warning text-background disabled:opacity-50"
-                >
-                  ↩
-                </button>
-                <button onClick={newGame} className="p-2 rounded-xl text-sm font-semibold bg-gradient-to-r from-primary to-secondary text-primary-foreground">
-                  🔄
-                </button>
-                <button onClick={toggleFullscreen} className="p-2 rounded-xl text-sm font-semibold bg-card-light text-foreground border border-border">
-                  <Minimize2 className="w-4 h-4" />
-                </button>
-              </div>
-            )}
-            {isFullscreen && (
-              <div className="absolute top-2 left-2 z-50 flex items-center gap-2">
-                <span className={`w-7 h-7 rounded-md flex items-center justify-center font-extrabold text-xs text-primary-foreground ${game.currentPlayer === 'X' ? 'bg-primary' : 'bg-secondary'}`}>
-                  {game.currentPlayer}
-                </span>
-                <span className="text-xs text-muted-foreground">Move {game.moveCount}</span>
-              </div>
-            )}
-            <div className={isFullscreen ? 'w-[min(100vw,100vh)] h-[min(100vw,100vh)] p-2' : ''}>
-              <GameBoard
-                board={game.board}
-                winningCells={game.winningCells}
-                lastMove={game.lastMove}
-                gameOver={game.gameOver}
-                onCellClick={handleCellClick}
-              />
-            </div>
-            {isFullscreen && game.gameOver && (
-              <div className={`absolute bottom-4 left-1/2 -translate-x-1/2 px-6 py-3 rounded-xl font-bold text-base animate-[fadeIn_0.4s_ease] ${game.winner ? 'bg-success/90 text-primary-foreground' : 'bg-warning/90 text-background'}`}>
-                {game.winner ? `🏆 ${game.winner} Wins!` : "🤝 Draw!"}
-              </div>
-            )}
-          </div>
+          <GameBoard
+            board={game.board}
+            winningCells={game.winningCells}
+            lastMove={game.lastMove}
+            gameOver={game.gameOver}
+            onCellClick={handleCellClick}
+          />
 
           {/* Game Info */}
           <div className="flex justify-between items-center p-3 sm:p-4 bg-background rounded-xl sm:rounded-2xl border border-border mt-4">
