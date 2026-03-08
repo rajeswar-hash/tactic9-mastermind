@@ -365,12 +365,12 @@ export default function Index({ initialPage = 'home' }: IndexProps) {
 
           {/* Difficulty */}
           {mode === 'bot' && (
-            <div className="flex gap-2 mb-4 flex-wrap">
+            <div className="flex gap-2 mb-4 w-full">
               {(['easy', 'medium', 'hard'] as Difficulty[]).map(d => (
                 <button
                   key={d}
                   onClick={() => { setDifficulty(d); newGame(); }}
-                  className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-semibold border-2 transition-all
+                  className={`flex-1 px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-semibold border-2 transition-all
                     ${difficulty === d
                       ? 'bg-primary border-primary text-primary-foreground'
                       : 'bg-card border-border text-muted-foreground hover:border-primary'
