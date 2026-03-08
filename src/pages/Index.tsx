@@ -359,6 +359,25 @@ export default function Index({ initialPage = 'home' }: IndexProps) {
                 gameOver={game.gameOver}
                 onCellClick={handleCellClick}
               />
+              {/* Difficulty below board */}
+              {mode === 'bot' && (
+                <div className="flex rounded-xl overflow-hidden border border-border mt-3">
+                  {(['easy', 'medium', 'hard'] as Difficulty[]).map(d => (
+                    <button
+                      key={d}
+                      onClick={() => { setDifficulty(d); newGame(); }}
+                      className={`flex-1 py-2 text-[11px] font-bold uppercase tracking-wider transition-all
+                        ${difficulty === d
+                          ? 'bg-primary text-primary-foreground'
+                          : 'bg-background text-muted-foreground hover:bg-primary/10'
+                        }
+                      `}
+                    >
+                      {d}
+                    </button>
+                  ))}
+                </div>
+              )}
               {game.gameOver && (
                 <div className={`text-center p-2.5 mt-3 rounded-xl font-bold text-sm animate-[fadeIn_0.4s_ease]
                   ${game.winner
