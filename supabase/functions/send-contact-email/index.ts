@@ -53,7 +53,7 @@ serve(async (req) => {
       },
       body: JSON.stringify({
         from: 'Contact Form <onboarding@resend.dev>',
-        to: ['rajeswar872@gmail.com'],
+        to: ['rajeswar631@gmail.com'],
         subject: `[Contact] ${issue}: ${subject}`,
         html: emailHtml,
         reply_to: email,
