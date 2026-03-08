@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
+import SupportChat from './SupportChat';
 
 const issueTypes = [
   'Bug Report',
@@ -50,6 +51,8 @@ export default function ContactPage() {
       <p className="text-muted-foreground mb-6 text-sm sm:text-base">
         Have a bug to report, a feature idea, gameplay issue, or just want to share feedback? We're here to help — reach out about anything!
       </p>
+
+      <SupportChat />
 
       {sent ? (
         <div className="text-center py-12">
