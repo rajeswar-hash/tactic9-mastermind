@@ -18,6 +18,7 @@ import {
 } from '@/lib/gameTypes';
 import { checkWinner, isBoardFull, getAIMove } from '@/lib/gameAI';
 import { playMoveSound, playWinSound, playDrawSound, playUndoSound } from '@/lib/sounds';
+import { startBgMusic, stopBgMusic } from '@/lib/bgMusic';
 
 type IndexPage = 'home' | 'about' | 'howto' | 'strategy' | 'help' | 'contact' | 'terms' | 'privacy';
 
