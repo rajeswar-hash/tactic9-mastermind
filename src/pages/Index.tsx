@@ -343,20 +343,18 @@ export default function Index() {
           )}
 
           {/* Thinking */}
-          {thinking && (
-            <div className="flex items-center gap-3 p-3 bg-background rounded-xl mb-4">
-              <div className="flex gap-1">
-                {[0, 1, 2].map(i => (
-                  <span
-                    key={i}
-                    className="w-2 h-2 bg-primary rounded-full animate-[thinkingBounce_1.4s_ease-in-out_infinite]"
-                    style={{ animationDelay: `${i * 0.2}s` }}
-                  />
-                ))}
-              </div>
-              <span className="text-muted-foreground text-xs sm:text-sm">Computer is thinking...</span>
+          <div className={`flex items-center gap-3 p-3 bg-background rounded-xl mb-4 transition-opacity duration-200 ${thinking ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+            <div className="flex gap-1">
+              {[0, 1, 2].map(i => (
+                <span
+                  key={i}
+                  className="w-2 h-2 bg-primary rounded-full animate-[thinkingBounce_1.4s_ease-in-out_infinite]"
+                  style={{ animationDelay: `${i * 0.2}s` }}
+                />
+              ))}
             </div>
-          )}
+            <span className="text-muted-foreground text-xs sm:text-sm">Computer is thinking...</span>
+          </div>
 
           <GameBoard
             board={game.board}
