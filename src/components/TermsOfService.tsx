@@ -2,7 +2,7 @@ export default function TermsOfService() {
   return (
     <div className="max-w-4xl mx-auto p-5 sm:p-8 bg-card rounded-3xl border border-border animate-[fadeIn_0.4s_ease]">
       <h2 className="text-2xl sm:text-3xl font-extrabold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-2">
-        📜 Terms of Service
+        📜 Terms and Conditions
       </h2>
       <p className="text-xs text-muted-foreground mb-8">Last updated: March 3, 2026</p>
 
