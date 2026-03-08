@@ -41,7 +41,7 @@ export default function NavBar({ currentPage, onNavigate, onMenuToggle }: NavBar
             onClick={() => { onNavigate('home'); toggleMenu(false); }}
             className="text-2xl font-black bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
           >
-            🎯 Tactic9
+            🎯 Tactic9-Mastermind
           </button>
 
           <button

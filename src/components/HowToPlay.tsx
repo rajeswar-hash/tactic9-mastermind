@@ -2,7 +2,7 @@ export default function HowToPlay() {
   return (
     <div className="max-w-4xl mx-auto p-5 sm:p-8 bg-card rounded-3xl border border-border animate-[fadeIn_0.4s_ease]">
       <h2 className="text-2xl sm:text-3xl font-extrabold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-2">
-        📖 How to Play Tactic9
+        📖 How to Play Tactic9-Mastermind
       </h2>
       <p className="text-xs text-muted-foreground mb-8">Everything you need to know to start playing and winning</p>
 
@@ -56,7 +56,7 @@ export default function HowToPlay() {
       </Section>
 
       <Section title="📊 Statistics & Tracking">
-        <p className="mb-2">Tactic9 tracks your performance separately for each game mode:</p>
+        <p className="mb-2">Tactic9-Mastermind tracks your performance separately for each game mode:</p>
         <ul className="list-disc pl-5 space-y-1">
           <li><strong>Total Games:</strong> Number of games completed</li>
           <li><strong>X Wins:</strong> Games won by Player X</li>
@@ -67,7 +67,7 @@ export default function HowToPlay() {
       </Section>
 
       <Section title="🔊 Sound Effects">
-        <p className="mb-2">Tactic9 features synthesized sound effects for an immersive experience:</p>
+        <p className="mb-2">Tactic9-Mastermind features synthesized sound effects for an immersive experience:</p>
         <ul className="list-disc pl-5 space-y-1">
           <li><strong>Move Sound:</strong> A distinct tone plays when X or O is placed (different pitches for each player)</li>
           <li><strong>Win Sound:</strong> A celebratory ascending melody plays when a player wins</li>

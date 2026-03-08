@@ -155,7 +155,7 @@ export default function SupportChat() {
           <span className="text-2xl">🤖</span>
           <div className="text-left">
             <h3 className="font-bold text-foreground text-sm">Instant Support Chat</h3>
-            <p className="text-xs text-muted-foreground">Get quick answers about Tactic9</p>
+            <p className="text-xs text-muted-foreground">Get quick answers about Tactic9-Mastermind</p>
           </div>
         </div>
         <span
@@ -175,7 +175,7 @@ export default function SupportChat() {
               <div className="text-center py-6">
                 <span className="text-3xl block mb-2">👋</span>
                 <p className="text-sm text-muted-foreground mb-4">
-                  Hi! I can help with common Tactic9 questions. Try asking:
+                  Hi! I can help with common Tactic9-Mastermind questions. Try asking:
                 </p>
                 <div className="flex flex-wrap gap-2 justify-center">
                   {QUICK_QUESTIONS.map(q => (
@@ -239,7 +239,7 @@ export default function SupportChat() {
               type="text"
               value={input}
               onChange={e => setInput(e.target.value)}
-              placeholder="Ask a question about Tactic9..."
+              placeholder="Ask a question about Tactic9-Mastermind..."
               disabled={isLoading}
               className="flex-1 px-4 py-2.5 bg-card border border-border rounded-xl text-foreground placeholder:text-muted-foreground/50 focus:border-primary focus:outline-none transition-colors text-sm disabled:opacity-50"
             />
